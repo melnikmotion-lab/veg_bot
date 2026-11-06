@@ -149,6 +149,14 @@ GEORGIA_TEXT = """🇬🇪 <b>Грузинская карта (Bank of Georgia)<
 
 После оплаты нажми кнопку ниже и пришли скрин платежа 🧾"""
 
+RUSSIA_TEXT = """🇷🇺 <b>Оплата с российской карты</b>
+
+С российской карты можно отправить перевод на мою грузинскую карту через сервис <b>Korona Pay</b> (Золотая Корона) — на сайте koronapay.com или в их приложении.
+
+Выбери перевод в Грузию, укажи данные получателя ниже и переведи сумму, эквивалентную 7$ 👇
+
+""" + GEORGIA_TEXT
+
 THANK_YOU_TEXT = """Напиши мне пожалуйста сюда [👉 нажми](https://t.me/m/PESxpZW1NGMy) любое приветствие или смайлик, скоро мы проверим перевод и сразу вышлем тебе гайд в этот чат 🌱✨
 
 Спасибо за доверие! Пусть он принесёт тебе много пользы, лёгкости и вдохновения на пути к вкусному и здоровому питанию 💚
@@ -171,8 +179,9 @@ def payment_keyboard():
     return InlineKeyboardMarkup([
         [InlineKeyboardButton("1️⃣ PayPal 💻 — международные переводы", callback_data="pay_paypal")],
         [InlineKeyboardButton("2️⃣ Украинская карта 🇺🇦", callback_data="pay_ukraine")],
-        [InlineKeyboardButton("3️⃣ Грузинская карта 🇬🇪 — международные переводы", callback_data="pay_georgia")],
-        [InlineKeyboardButton("4️⃣ Криптовалюта 💎 USDT TRC20", callback_data="pay_crypto")],
+        [InlineKeyboardButton("3️⃣ Российская карта 🇷🇺 — через Korona Pay", callback_data="pay_russia")],
+        [InlineKeyboardButton("4️⃣ Грузинская карта 🇬🇪 — международные переводы", callback_data="pay_georgia")],
+        [InlineKeyboardButton("5️⃣ Криптовалюта 💎 USDT TRC20", callback_data="pay_crypto")],
     ])
 
 # ── Хендлеры ──────────────────────────────────────────────────────────────────
@@ -192,6 +201,9 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
 
     elif query.data == "pay_ukraine":
         await query.message.reply_html(UKRAINE_TEXT, reply_markup=paid_keyboard())
+
+    elif query.data == "pay_russia":
+        await query.message.reply_html(RUSSIA_TEXT, reply_markup=paid_keyboard())
 
     elif query.data == "pay_georgia":
         await query.message.reply_html(GEORGIA_TEXT, reply_markup=paid_keyboard())
