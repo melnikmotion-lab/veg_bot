@@ -107,6 +107,13 @@ td b{color:var(--wine);font-weight:600}
 .cta{margin-top:2.5mm;background:var(--p1);border-radius:3.5mm;padding:2.6mm 4mm;font-size:9.4pt}
 .cta b{color:var(--wine)}
 .sep{height:1px;background:var(--line);margin:6mm 0 0}
+
+/* без «карточных» рамок */
+.page::before,.page::after{display:none!important}
+.page>.moon,.page>.st{display:none!important}
+.page{padding:20mm 20mm 20mm}
+.foot{bottom:9mm;text-align:left;left:20mm;right:20mm;border-top:1px solid var(--line);padding-top:2.5mm;display:flex;justify-content:space-between}
+.cover .foot{border-top-color:rgba(255,255,255,.5)}
 </style></head><body class="d">
 
 <!-- ============ 1. ОБЛОЖКА ============ -->

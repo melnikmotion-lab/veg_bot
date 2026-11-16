@@ -9,17 +9,17 @@ body.m .page>.moon,body.m .page>.st,body.m .page>.foot{display:none}
 body.m .toc .pg{display:none}
 /* обложка — на всю страницу */
 body.m .cover{height:196mm;padding:14mm 9mm;position:relative;overflow:hidden;background:linear-gradient(170deg,#F9CFDC 0%,#EFA9C0 55%,#E890AB 100%)!important}
-body.m .cover::before,body.m .cover::after{display:block}
+body.m .cover::before,body.m .cover::after{display:none!important}
 body.m .cover::before{inset:4mm}
 body.m .cover::after{inset:5.5mm}
-body.m .cover>.moon{display:block;width:7mm;height:7mm}
+body.m .cover>.moon{display:none!important}
 body.m .cover>.moon.t{top:2mm}body.m .cover>.moon.b{bottom:2mm}
 body.m .cover .lg{width:70mm!important;margin:10mm auto 0!important}
 body.m .cover h1{font-size:22pt;margin-top:6mm}
 body.m .cover .sub{font-size:9.5pt}
 body.m .boxes{gap:5mm;margin-top:9mm}
 body.m .boxes img{height:52mm}
-body.m .cover>.foot{display:block;bottom:8mm;font-size:6pt}
+body.m .cover>.foot{display:flex;bottom:8mm;left:9mm;right:9mm;font-size:6pt}
 /* типографика */
 body.m h1{font-size:19pt}
 body.m h1[style]{font-size:15pt!important}
