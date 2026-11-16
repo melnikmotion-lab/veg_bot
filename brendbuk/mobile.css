@@ -1,0 +1,60 @@
+/* Мобильная версия: узкие страницы, без таблиц вбок */
+@page{size:110mm 196mm;margin:12mm 8mm 12mm}
+@page :first{margin:0}
+html,body.m{background:#FBF3F6}
+body.m .page{width:auto;height:auto;overflow:visible;padding:0;background:transparent;break-before:page;page-break-after:auto}
+body.m .page:first-child{break-before:auto}
+body.m .page::before,body.m .page::after{display:none}
+body.m .page>.moon,body.m .page>.st,body.m .page>.foot{display:none}
+body.m .toc .pg{display:none}
+/* обложка — на всю страницу */
+body.m .cover{height:196mm;padding:14mm 9mm;position:relative;overflow:hidden;background:linear-gradient(170deg,#F9CFDC 0%,#EFA9C0 55%,#E890AB 100%)!important}
+body.m .cover::before,body.m .cover::after{display:block}
+body.m .cover::before{inset:4mm}
+body.m .cover::after{inset:5.5mm}
+body.m .cover>.moon{display:block;width:7mm;height:7mm}
+body.m .cover>.moon.t{top:2mm}body.m .cover>.moon.b{bottom:2mm}
+body.m .cover .lg{width:70mm!important;margin:10mm auto 0!important}
+body.m .cover h1{font-size:22pt;margin-top:6mm}
+body.m .cover .sub{font-size:9.5pt}
+body.m .boxes{gap:5mm;margin-top:9mm}
+body.m .boxes img{height:52mm}
+body.m .cover>.foot{display:block;bottom:8mm;font-size:6pt}
+/* типографика */
+body.m h1{font-size:19pt}
+body.m h1[style]{font-size:15pt!important}
+body.m h2{font-size:13.5pt;margin:5mm 0 2mm}
+body.m h3{font-size:11.5pt}
+body.m p,body.m li{font-size:9.4pt}
+body.m .lead{font-size:10pt;margin-top:3mm}
+body.m .quote{font-size:12.5pt}
+body.m .lbl{font-size:7pt}
+/* сетки в одну колонку */
+body.m .grid2,body.m .grid3{grid-template-columns:1fr!important;gap:3mm}
+body.m [style*="grid-template-columns"]:not(.reels){grid-template-columns:1fr!important}
+body.m .val{grid-template-columns:1fr;gap:1mm}
+body.m .sayrow{grid-template-columns:1fr;gap:1.5mm;margin-bottom:3mm}
+body.m .fontrow{grid-template-columns:1fr;gap:1.5mm}
+body.m .sw{flex-wrap:wrap;gap:2.5mm}
+body.m .sw div{flex:0 0 calc(33.3% - 2mm)}
+body.m .sw div[style*="hidden"]{display:none}
+body.m .sw i{height:13mm}
+body.m img[src*="lila"]{max-width:45mm}
+body.m .reels{gap:2.5mm}
+body.m .reel{padding:3mm}
+body.m .reel .tt{font-size:9pt}
+body.m .reel .tag{font-size:5pt;top:2mm;left:2mm}
+body.m .card,body.m .pinkcard,body.m .bluecard,body.m .cta,body.m .say,body.m .val,body.m .ex,body.m .wk .hd{break-inside:avoid}
+/* таблицы → карточки */
+body.m table,body.m tbody,body.m tr,body.m td{display:block;width:auto!important}
+body.m tr:has(th){display:none}
+body.m table{margin-top:2mm}
+body.m tr{background:#fff;border:1px solid var(--line);border-radius:3mm;padding:2mm 3mm;margin-bottom:2mm;break-inside:avoid}
+body.m td{border:0!important;padding:.5mm 0!important;font-size:9.2pt;white-space:normal!important}
+body.m td[data-l]::before{content:attr(data-l);display:block;font-size:6.3pt;letter-spacing:.12em;text-transform:uppercase;color:var(--p4);font-weight:600;font-style:normal;margin-top:.8mm}
+body.m td:first-child[data-l]::before{display:none}
+body.m td:first-child{font-weight:600;color:var(--wine)}
+body.m .steps td:first-child{color:var(--p4)}
+body.m .wk tr{background:rgba(255,255,255,.7);margin-bottom:1.5mm}
+body.m .wk .hd{flex-wrap:wrap}
+body.m .wk .hd .goal{margin-left:0}
