@@ -14,6 +14,14 @@
    (подробно — раздел «Как работать над брендом» ниже).
 5. **Длинный чат:** когда чат становится слишком длинным — коротко ответить, создать новый чат
    (create_session) с полной сводкой, где ЭТИ ПРАВИЛА идут первыми, и написать Лиле перейти туда.
+   ПРОВЕРЯТЬ САМОЙ, не надеясь на хук: в начале каждого ответа Лиле запускать
+   `python3 -c "import json,glob,os;f=max(glob.glob('/root/.claude/projects/*/*.jsonl'),key=os.path.getmtime);u=0
+for l in open(f):
+ d=json.loads(l) if l.strip() else {}
+ m=(d.get('message') or {}).get('usage') if d.get('type')=='assistant' and not d.get('isSidechain') else None
+ u=sum(m.get(k,0) for k in ('input_tokens','cache_read_input_tokens','cache_creation_input_tokens','output_tokens')) if m else u
+print(u)"`
+   — от 140 000 сразу новый чат. (17.11 хук не сработал, чат дорос до 249 тыс.: чат открыли с двумя репозиториями.)
 6. Не тратить ответы на извинения — давать результат.
 
 Этот репозиторий — бот для вег-гайда. Здесь же Лила работает с Claude над контентом и маркетингом бренда SHE.
