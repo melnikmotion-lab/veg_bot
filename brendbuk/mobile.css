@@ -2,7 +2,7 @@
 @page{size:110mm 196mm;margin:12mm 8mm 12mm}
 @page :first{margin:0}
 html,body.m{background:#FBF3F6}
-body.m .page{width:auto;height:auto;overflow:visible;padding:0;background:transparent;break-before:page;page-break-after:auto}
+body.m .page{width:auto;height:auto;overflow:visible;padding:0;background:transparent;break-before:auto;page-break-after:auto;margin-top:14mm}
 body.m .page:first-child{break-before:auto}
 body.m .page::before,body.m .page::after{display:none}
 body.m .page>.moon,body.m .page>.st,body.m .page>.foot{display:none}
@@ -58,3 +58,11 @@ body.m .steps td:first-child{color:var(--p4)}
 body.m .wk tr{background:rgba(255,255,255,.7);margin-bottom:1.5mm}
 body.m .wk .hd{flex-wrap:wrap}
 body.m .wk .hd .goal{margin-left:0}
+
+body.m .cover{margin-top:0}
+body.m .cover + .page{break-before:page;margin-top:0}
+body.m .lbl,body.m h1,body.m h2,body.m h3{break-after:avoid;page-break-after:avoid}
+body.m .lbl + h1{break-before:avoid}
+body.m section:has(img[src*="scr_dnev"]),body.m section:has(img[src*="box_sad"]){break-before:page;margin-top:0}
+body.m img[src*="scr_dnev"]{max-height:120mm;width:auto;margin:0 auto}
+body.m img[src*="box_sad"],body.m img[src*="back_sad"],body.m img[src*="back_yaz"]{max-height:85mm;width:auto;margin:0 auto}
