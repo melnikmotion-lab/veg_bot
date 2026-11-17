@@ -100,7 +100,7 @@ THANK_YOU_TEXT = """Напишите мне, пожалуйста, сюда [�
 
 def paid_keyboard():
     return InlineKeyboardMarkup([
-        [InlineKeyboardButton("✅ Я оплатил(а)!", callback_data="oplatil")]
+        [InlineKeyboardButton("✅ Оплата отправлена", callback_data="oplatil")]
     ])
 
 def payment_keyboard():
@@ -158,8 +158,13 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
         except Exception as e:
             logger.warning(f"Не удалось отправить уведомление в группу: {e}")
 
+GREETING_TEXT = ("Здравствуйте! 🌿 Это бот Лилы с гайдом о том, как есть без мяса, рыбы и яиц.\n\n"
+                 "Чтобы купить гайд, выберите удобный способ оплаты 👇")
+
+
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-    pass
+    """17.11 Лила: на любое текстовое сообщение бот здоровается."""
+    await update.message.reply_text(GREETING_TEXT, reply_markup=payment_keyboard())
 
 async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user = update.effective_user
