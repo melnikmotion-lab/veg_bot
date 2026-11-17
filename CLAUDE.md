@@ -5,7 +5,7 @@
    проанализировать САМИ продукты, а не сводку, память или рекламу о них.
 2. **Сначала первоисточник, потом вывод.** Перед любой оценкой открыть сам продукт: гайд —
    she-bot/guides/Gaid_bez_myasa_Lila.pdf (pdftotext, целиком); колоды, планер, дневник — код бота
-   и ITOGI.md в melnikmotion-lab/she-bot (ветка claude/draft-hc993j); слайды — images/*.jpg (посмотреть картинки);
+   и ITOGI.md в melnikmotion-lab/she-bot (ветка claude/itogi-continuation-hc993j — она работает на сервере; draft устарела); слайды — images/*.jpg (посмотреть картинки);
    стратегию — документ Claude Docs (прочитать заново). Сводки из прошлых чатов — не источник, их перепроверять.
 3. **Перепроверять информацию** (цены, факты, цифры) по источнику перед тем, как писать Лиле.
    Не проверил — прямо написать «не проверял», а не угадывать.
@@ -44,7 +44,7 @@
 
 ## Где что лежит
 - Стратегия (Claude Docs): https://claude.ai/artifact/NbdzRAYczrhLppBUYeteqx
-- Итоги по боту SHE: melnikmotion-lab/she-bot, ветка claude/draft-hc993j, ITOGI.md (проверять на устаревшее).
+- Итоги по боту SHE: melnikmotion-lab/she-bot, ветка claude/itogi-continuation-hc993j, ITOGI.md (проверять на устаревшее).
 - Слайды вег-гайда: images/01.jpg … 08.jpg.
 
 ## Длинный чат
