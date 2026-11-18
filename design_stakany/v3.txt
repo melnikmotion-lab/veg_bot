@@ -1,0 +1,29 @@
+Вариант 3: Высокий стакан с пузырьками, розоватая вода
+Файл: static/app/index.html (функция paintPlan, строки около 2057–2059). Режим «литры» (💧) не меняется.
+Класс стакана — "gls" (НЕ "wg": .wg уже занят виджетами «Дня», их код ставит hidden).
+
+=== JS, шаг 1: ВСТАВИТЬ новую строку прямо перед строкой  $("#pWater").innerHTML = WUNIT==="l" ===
+  const wEl = $("#pWater"), wPrev = wEl.dataset.pw === undefined ? P.water : +wEl.dataset.pw; wEl.dataset.pw = P.water; const GLASS = '<svg viewBox="0 0 24 30" aria-hidden="true"><defs><linearGradient id="wg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#BFDDF3"/><stop offset="1" stop-color="#F2C3D4"/></linearGradient></defs><path class="gl" d="M6 2.8H18L16.9 25.4Q16.8 27 15.2 27H8.8Q7.2 27 7.1 25.4Z"/><g class="wt"><path d="M7.3 9.5H16.7L15.8 24.9Q15.7 25.8 14.8 25.8H9.2Q8.3 25.8 8.2 24.9Z" fill="url(#wg3)"/><path d="M7.3 9.5H16.7" stroke="#8EC0E4" stroke-width="1.2" stroke-linecap="round"/><circle cx="10.6" cy="20.5" r="1.1" fill="none" stroke="#fff" stroke-width=".9"/><circle cx="13.3" cy="15.6" r=".8" fill="none" stroke="#fff" stroke-width=".8"/><circle cx="11.6" cy="12.6" r=".55" fill="#fff"/></g></svg>';
+
+=== JS, шаг 2: ЗАМЕНИТЬ строку ветки стаканов (сейчас: "    : Array.from({length:8}, ... <b>🥛</b><i>250 мл</i></span>`).join(\"\");") на ===
+    : Array.from({length:8}, (_,i) => `<span data-w="${i+1}" class="gls${i<P.water?" on":""}${i>=wPrev&&i<P.water?" up":""}">${GLASS}<i>250 мл</i></span>`).join("");
+
+(wPrev — сколько стаканов было до нажатия: только что отмеченные получают class "up" и наполняются снизу вверх за 0,28 с; остальные просто показаны полными. data-w сохранён — обработчик нажатия (около строки 2405) не меняется. Проверено в Playwright на копии index.html: нажатие работает, анимация идёт.)
+
+=== CSS: ДОБАВИТЬ в конец <style> (после правила [data-theme=dark] .water span… около строки 700, чтобы перебить его) ===
+/* 18.11 Лила: стакан нарисован (SVG), а не эмодзи — одинаково на iPhone и Android */
+.water span.gls{font-size:0;opacity:1}
+.water span.gls svg{display:block;width:24px;height:30px;margin:0 auto 2px;color:#A07A8E;overflow:visible}
+.water span.gls .gl{fill:rgba(255,255,255,.75);stroke:currentColor;stroke-width:1.5;stroke-linejoin:round}
+.water span.gls .wt{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(0);opacity:0;transition:transform .28s ease-out,opacity .2s}
+.water span.gls.on .wt{transform:scaleY(1);opacity:1}
+.water span.gls.up .wt{animation:wfill .28s ease-out}
+@keyframes wfill{from{transform:scaleY(0);opacity:.4}to{transform:scaleY(1);opacity:1}}
+.water span.gls .hl{fill:none;stroke:#fff;stroke-width:1.4;stroke-linecap:round}
+.water span.gls:not(.on) i{opacity:.75}
+[data-theme=dark] .water span.gls{opacity:1}
+[data-theme=dark] .water span.gls svg{color:rgba(255,255,255,.62)}
+[data-theme=dark] .water span.gls .gl{fill:rgba(255,255,255,.05)}
+
+
+(Старые правила .water span b / :not(.on) b с grayscale и тенью остаются для литров 💧 — их не трогаем.)
