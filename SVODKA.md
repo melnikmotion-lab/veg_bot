@@ -14,9 +14,20 @@
    (create_session) с полной сводкой, где ЭТИ ПРАВИЛА идут первыми, и написать Лиле перейти туда.
 6. Не тратить ответы на извинения — давать результат.
 
+## 18.11 чат 9 — СЕЙЧАС (начинать отсюда)
+- Карточки дня ОТЛОЖЕНЫ на несколько месяцев, бренд-бук не важен — не напоминать (раздел о карточках ниже — на потом).
+- В боте (прод she-bot 3308063): джапа в «Делах за месяц» в кругах; карточка дня внизу «Дня»; новая страница «Все продукты» (фон цвета дневника, светлая SHE со звёздочками shestars.js, список продуктов, «Всё вместе» светло-жёлтая).
+- ЖДЁМ ответа Лилы: ей показаны 2 варианта шрифтов «Все продукты» — 1) весь текст шрифтом Kurale (как «Метафорические карты»), 2) весь текст Inter (как «Всё вместе»). В обоих — новая вертикальная композиция: SHE меньше (74%), «все продукты» ближе к SHE (14px), до списка 32px, между продуктами 12px, до «Всё вместе» 24px, всё по центру.
+  CSS обоих вариантов: в index.html после </style>-блока добавить:
+  общее: body.ny #choose .chs-h .she-w{width:74%} body.ny #choose .chs-h span{margin-top:14px} body.ny #choose .chlist{margin-top:32px} body.ny #choose .chall{margin-top:24px} body.ny #choose{justify-content:center}
+  вар.1: #choose .chs-h span{font:400 19px/1 Kurale,serif;letter-spacing:.12em} #choose .chall .a1{font:400 26px/1.1 Kurale,serif;text-transform:none} #choose .chall .a2{font:400 14px/1.3 Kurale,serif} #choose .chall .a3{font:400 34px/1 Kurale,serif} #choose .chall .a3 s{font:400 15px/1.3 Kurale,serif} #choose .chi .tx small{font:400 14px/1.3 Kurale,serif}
+  вар.2: #choose .chi .tx b{font:700 17px/1.2 Inter,sans-serif}
+  Что Лила выберет — сразу поставить в бот (это исправление): she-bot рабочая ветка → cherry-pick в claude/itogi-continuation-hc993j (перед push сделать fetch: в прод пушат и другие чаты).
+- Скриншоты экрана делали Playwright-скриптом с подменой /static/ на she-bot/static (без http-сервера по всему репозиторию — его система запрещает).
+
 ## Как устроено
 - Все решения Лилы — CLAUDE.md, раздел «РЕШЕНИЯ ЛИЛЫ». Новое решение сразу дописывать туда.
-- Рабочая ветка в обоих репозиториях: claude/read-svodka-claude-docs-da0lta. she-bot подключать через add_repo (push).
+- Рабочая ветка в обоих репозиториях: claude/read-svodka-claude-docs-umd0t6. she-bot подключать через add_repo (push).
 - Прод SheBot = she-bot claude/itogi-continuation-hc993j (Railway), сейчас 6a1fa62. Прод VecBot = main veg_bot.
   В прод — только после «да» Лилы.
 - Лиле не писать про коммиты и ветки. Реквизиты (she-bot/config.py, veg_bot/bot.py) никуда не отправлять. Stars не предлагать.
