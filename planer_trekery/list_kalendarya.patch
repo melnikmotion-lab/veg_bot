@@ -1,0 +1,30 @@
+diff --git a/static/app/index.html b/static/app/index.html
+index 269b94c..c05b2a8 100644
+--- a/static/app/index.html
++++ b/static/app/index.html
+@@ -174,6 +174,15 @@ h2{font-size:23px}
+ .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
+ .pnav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:4px 0 12px}
+ .pnav b{font-family:Kurale,serif;font-weight:400;font-size:19px;text-align:center;flex:1}
++/* 21.11 Лила: дата в «Дне» — листок настенного календаря: белый, сверху кольца; при смене дня листок переворачивается */
++#pDate{position:relative;flex:0 1 220px;background:#fff;border-radius:14px;padding:16px 10px 10px;box-shadow:0 2px 0 #ece4e8,0 6px 14px rgba(120,60,90,.12);color:#3a2a33;perspective:600px}
++#pDate::before,#pDate::after{content:"";position:absolute;top:-9px;width:8px;height:20px;border-radius:5px;background:linear-gradient(90deg,#8d8d95,#e9e9ee 45%,#a3a3ab);box-shadow:0 1px 2px rgba(0,0,0,.25)}
++#pDate::before{left:28%}#pDate::after{right:28%}
++#pDate i{font-style:normal}
++#pDate .cnum{display:block;font:400 34px/1 Kurale,serif;color:var(--wine,#7a2140)}
++#pDate .cmon{display:block;font:400 16px Kurale,serif;margin-top:2px}
++#pDate.cflip{animation:calflip .45s ease}
++@keyframes calflip{0%{transform:rotateX(0)}45%{transform:rotateX(-88deg);opacity:.4}55%{transform:rotateX(88deg);opacity:.4}100%{transform:rotateX(0)}}
+ .pnav b span{display:block;font:400 13px Inter,sans-serif;color:var(--muted)}
+ .pday{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px}
+ .pday img{width:86px;aspect-ratio:70/98;object-fit:cover;border-radius:10px;box-shadow:0 3px 10px rgba(60,30,50,.18);flex:none}
+@@ -2254,7 +2263,8 @@ async function openPlan(){ go("plan"); await loadPrefs(); P = await loadDay(pDay
+ function paintPlan(){
+   dcSig = ""; paintDC(); dcLoad();
+   const d = pDay, c = dayCard(d), today = dkey(d)===dkey(tday());
+-  $("#pDate").innerHTML = `${d.getDate()} ${MN[d.getMonth()]} ${d.getFullYear()}<span>${today ? "сегодня · " : ""}${WD[d.getDay()]}</span>`;
++  const pdEl = $("#pDate"), pdKey = dkey(d); if (pdEl.dataset.k && pdEl.dataset.k !== pdKey) { pdEl.classList.remove("cflip"); void pdEl.offsetWidth; pdEl.classList.add("cflip") } pdEl.dataset.k = pdKey;
++  pdEl.innerHTML = `<i class="cnum">${d.getDate()}</i><i class="cmon">${MN[d.getMonth()]} ${d.getFullYear()}</i><span>${today ? "сегодня · " : ""}${WD[d.getDay()]}</span>`;
+   $("#pCard").innerHTML = `<img src="${img(c.n, true, "yaz")}" alt=""><div><div class="small">Карта дня · ${esc(c.emotion)}</div><p class="aff">${esc(c.affirmation)}</p></div>`;
+   const chip = m => { const on = P.moods.includes(m.k); return `<button data-m="${m.k}" class="${on?"on":""}" style="border-color:${m.c}${on?"":"80"};${on?`background:${m.c}`:""}"><i>${m.ic}</i>${m.t}</button>` };
+   $("#pMoodG").innerHTML = MOODS.filter(m => m.g).map(chip).join("");
