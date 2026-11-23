@@ -59,4 +59,4 @@ CLAUDE.md (veg_bot, ветка claude/svodka-claude-docs-vy032s) — все ре
 ## ЧАТ 36 — НАЧИНАТЬ ОТСЮДА
 - САМОЕ ВАЖНОЕ (Лила 23.11): всё, что Лила говорит изменить, — СРАЗУ в бот и снимок готового; не переспрашивать. Снимки: картинка → под ней её текст → следующая картинка → её текст.
 - Ветка she-bot сейчас b1ce6a1. Снимки: Playwright, http://x.test/app с перехватом: /app → app.APP_HTML (import app из she-bot; pip install --ignore-installed blinker flask requests), /api/cards → app.api_cards() в test_request_context, /api/me → {ok:true, access:['yaz','sad','plan','dnev']}, /static/* → she-bot/static, остальное {"ok":true}. Экраны: openMood(), openWeek(), openDeck('yaz'); у раскладов сначала #guideOk.
-- СРАЗУ: снимок «Дел за месяц» после правки (нужны дела в localStorage, ключи p_ГГГГ-ММ-ДД) — прислать Лиле. Потом коротко поздороваться и ждать её слов.
+- 23.11 чат 37: снимок «Дел за месяц» после правки отправлен Лиле (пояснение под плашкой, «Убрано из итогов» нет). Ждём её слов.
