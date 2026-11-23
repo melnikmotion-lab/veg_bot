@@ -1,0 +1,191 @@
+<title>Расклады из двух колод</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kurale&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Лента вариантов: у каждого схема из настоящих карт и шаги с вопросами */
+:root{
+  --bg:#f7e9ee; --paper:#fffaf6; --ink:#3a2229; --soft:#7a5a63; --wine:#7b2d43; --rose:#d9aaba; --line:#e7cdd6;
+  --head:"Kurale",Georgia,serif; --text:"Inter",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#24161b; --paper:#301e24; --ink:#f4e6ea; --soft:#c9aab3; --wine:#e9a3b6; --rose:#8a5566; --line:#4a3038; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#24161b; --paper:#301e24; --ink:#f4e6ea; --soft:#c9aab3; --wine:#e9a3b6; --rose:#8a5566; --line:#4a3038; color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--text);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 48px}
+.wrap{max-width:760px;margin:0 auto;display:grid;gap:28px}
+h1{font:400 2rem/1.2 var(--head);color:var(--wine);margin:0;text-wrap:balance}
+h2{font:400 1.5rem/1.25 var(--head);color:var(--wine);margin:0;text-wrap:balance}
+.lead{margin:8px 0 0;color:var(--soft);max-width:62ch}
+.var{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:16px}
+.tag{display:inline-block;font:600 .72rem/1 var(--text);letter-spacing:.08em;text-transform:uppercase;color:var(--wine);
+  border:1px solid var(--rose);border-radius:99px;padding:6px 10px}
+.meta{color:var(--soft);margin:0}
+.scheme{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:center;padding:14px 0}
+.c{display:grid;gap:6px;justify-items:center;width:96px;text-align:center;font-size:.78rem;color:var(--soft);line-height:1.3}
+.c img{width:96px;border-radius:8px;box-shadow:0 2px 8px rgba(60,20,30,.18);display:block}
+.c b{color:var(--ink);font-weight:600}
+.oh{position:relative;width:150px}
+.oh img.fr{width:150px}
+.oh img.in{position:absolute;width:62px;left:44px;top:84px;border-radius:5px;box-shadow:0 2px 10px rgba(60,20,30,.35)}
+.oh .cap{margin-top:6px}
+.plus{font:1.6rem var(--head);color:var(--rose);align-self:center}
+ol{margin:0;padding-left:1.3em;display:grid;gap:10px}
+li::marker{color:var(--wine);font-family:var(--head)}
+.how{font-size:.82rem;font-weight:600;color:var(--wine)}
+.q{font-style:italic}
+.src{font-size:.82rem;color:var(--soft);border-top:1px dashed var(--line);padding-top:12px;margin:0}
+.src a{color:var(--wine)}
+.ask{background:var(--paper);border:1px solid var(--rose);border-radius:18px;padding:20px 22px}
+.ask p{margin:6px 0 0}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Расклады из двух колод</h1>
+  <p class="lead">«Язык эмоций» — карты-слова: на каждой названо чувство. «Тайный сад» — карты-картинки. Слово и картинку вместе используют с самых первых метафорических карт (OH-карты, 1975): слово подсказывает, как понимать картинку. Ниже четыре варианта расклада из двух колод. Расклад открыт тем, у кого куплены обе колоды; остальным виден с замочком. Ещё ниже — как переделать расклады, которые уже есть в боте.</p>
+</header>
+
+<section class="var">
+  <div><span class="tag">Вариант А · 2 карты</span></div>
+  <h2>Чувство и картинка</h2>
+  <p class="meta">Сначала человек сам называет, что чувствует. Потом картинка показывает, как это чувство выглядит у него внутри. Карты лежат рядом, чтобы было видно и картинку, и всё, что написано на карте чувства.</p>
+  <div class="scheme">
+    <div class="c"><img src="{{e20}}" alt="Карта «Тревога»"><span><b>1. Язык эмоций</b><br>открыто</span></div>
+    <div class="plus">+</div>
+    <div class="c"><img src="{{s14}}" alt="Карта «Тайного сада»"><span><b>2. Тайный сад</b><br>вслепую, рядом</span></div>
+  </div>
+  <ol>
+    <li><span class="how">«Язык эмоций», открыто: видны все 60 карт</span><br><span class="q">Какое чувство сейчас во мне сильнее всего?</span></li>
+    <li><span class="how">«Тайный сад», вслепую, карта встаёт рядом с картой чувства</span><br><span class="q">Что я вижу на картинке? Как она показывает моё чувство?</span></li>
+    <li><span class="how">Без карты, вопрос уже есть в боте</span><br><span class="q">Что мне сейчас поможет: побыть с этим чувством, позаботиться о себе или действовать?</span></li>
+  </ol>
+  <p class="src">Откуда: пара «карта-слово и картинка» — <a href="https://en.wikipedia.org/wiki/OH_cards" target="_blank" rel="noopener">OH-карты</a>. Чувство выбирают открыто, картинку вслепую: открыто вытянутая карта показывает то, что человек уже знает о себе, а вслепую — то, чего он в себе не замечает (методичка к колоде «Я чувствую. Для женщин», <a href="https://mak.arcanes.ru/load/0-0-0-79-20" target="_blank" rel="noopener">mak.arcanes.ru</a>).</p>
+</section>
+
+<section class="var">
+  <div><span class="tag">Вариант Б · 2 карты</span></div>
+  <h2>Что прячется за картинкой</h2>
+  <p class="meta">Обратный порядок. Человек выбирает картинку, похожую на свою жизнь сейчас, а карта эмоции, вытянутая вслепую, называет чувство за ней.</p>
+  <div class="scheme">
+    <div class="c"><img src="{{s30}}" alt="Карта «Тайного сада»"><span><b>1. Тайный сад</b><br>открыто</span></div>
+    <div class="plus">+</div>
+    <div class="c"><img src="{{by}}" alt="Рубашка «Языка эмоций»"><span><b>2. Язык эмоций</b><br>вслепую</span></div>
+  </div>
+  <ol>
+    <li><span class="how">«Тайный сад», открыто</span><br><span class="q">Какая картинка больше всего похожа на мою жизнь сейчас? Что на ней происходит?</span></li>
+    <li><span class="how">«Язык эмоций», вслепую</span><br><span class="q">Какое чувство прячется за этой картинкой? Узнаю ли я его в себе?</span><br>Дальше вопрос, напечатанный на самой карте эмоции.</li>
+  </ol>
+  <p class="src">Откуда: открытый и слепой выбор — та же <a href="https://mak.arcanes.ru/load/0-0-0-79-20" target="_blank" rel="noopener">методичка</a>. «Сначала картинка, потом текст, и смотрим, как они сочетаются» — так советуют работать с колодой «РесурснаЯ 2.0» (<a href="https://macards.ru/catalog/metaforicheskie-karty/resursy/koloda-metaforicheskikh-assotsiativnykh-kart-resursnaya/" target="_blank" rel="noopener">macards.ru</a>).</p>
+</section>
+
+<section class="var">
+  <div><span class="tag">Вариант В · 3 карты</span></div>
+  <h2>Ситуация, которая не даёт покоя</h2>
+  <p class="meta">Тема, которая уже есть в боте, с теми же тремя вопросами. Только средняя карта, про чувство, берётся из «Языка эмоций».</p>
+  <div class="scheme">
+    <div class="c"><img src="{{bs}}" alt="Рубашка «Тайного сада»"><span><b>Что на самом деле происходит</b><br>Тайный сад</span></div>
+    <div class="c"><img src="{{by}}" alt="Рубашка «Языка эмоций»"><span><b>Что я чувствую в глубине</b><br>Язык эмоций</span></div>
+    <div class="c"><img src="{{bs}}" alt="Рубашка «Тайного сада»"><span><b>Что поможет мне успокоиться</b><br>Тайный сад</span></div>
+  </div>
+  <ol>
+    <li><span class="how">«Тайный сад», вслепую</span><br><span class="q">Что на самом деле происходит, если посмотреть со стороны?</span></li>
+    <li><span class="how">«Язык эмоций», вслепую</span><br><span class="q">Что я чувствую в глубине, под первыми эмоциями?</span></li>
+    <li><span class="how">«Тайный сад», вслепую</span><br><span class="q">Что поможет мне успокоиться и позаботиться о себе?</span></li>
+  </ol>
+  <p class="src">Откуда: позиции и вопросы — ваши, из темы «Ситуация, которая не даёт покоя» в боте. Готового расклада, где позиции делят между двумя колодами именно так, я в источниках не нашла. Опора одна: в методичке сказано, что к уже лежащей карте можно добавлять ещё карты, если появился новый вопрос.</p>
+</section>
+
+<section class="var">
+  <div><span class="tag">Вариант Г · 4 карты</span></div>
+  <h2>Скрытые ресурсы</h2>
+  <p class="meta">Человек называет чувство, которое ему сейчас тяжело. Три картинки показывают, на что он может опереться.</p>
+  <div class="scheme">
+    <div class="c"><img src="{{e16}}" alt="Карта «Усталость»"><span><b>Что мне тяжело</b><br>Язык эмоций, открыто</span></div>
+    <div class="c"><img src="{{bs}}" alt="Рубашка"><span><b>Ресурс, которого я не вижу</b></span></div>
+    <div class="c"><img src="{{bs}}" alt="Рубашка"><span><b>Ресурс, который вижу, но не использую</b></span></div>
+    <div class="c"><img src="{{bs}}" alt="Рубашка"><span><b>Что я получу</b></span></div>
+  </div>
+  <ol>
+    <li><span class="how">«Язык эмоций», открыто</span><br><span class="q">Какое чувство мне сейчас тяжелее всего?</span></li>
+    <li><span class="how">«Тайный сад», вслепую</span><br><span class="q">Какой ресурс я не вижу?</span></li>
+    <li><span class="how">«Тайный сад», вслепую</span><br><span class="q">Какой ресурс я вижу, но не использую?</span></li>
+    <li><span class="how">«Тайный сад», вслепую</span><br><span class="q">Что я могу получить, когда использую свои скрытые ресурсы?</span></li>
+  </ol>
+  <p class="src">Откуда: три вопроса дословно из техники «Скрытое становится явным» к колоде «РесурснаЯ 2.0» (<a href="https://macards.ru/catalog/metaforicheskie-karty/resursy/koloda-metaforicheskikh-assotsiativnykh-kart-resursnaya/" target="_blank" rel="noopener">macards.ru</a>). Там все карты из одной колоды; карта чувства в начале — моё добавление.</p>
+</section>
+
+<section class="ask">
+  <h2>Расклады, которые уже есть в боте: как переделать</h2>
+  <p>Это предложение, в бот я пока ничего не вносила. Каждая тема построена на готовом раскладе из инструкций к метафорическим картам. Ссылки даны в конце каждого пункта.</p>
+</section>
+
+<section class="var">
+  <div><span class="tag">Отношения · 3 карты вслепую</span></div>
+  <h2>Отношения</h2>
+  <p class="meta">Сейчас: «Что я вношу в эти отношения», «Что мне в них по-настоящему важно», «Что поможет нам стать ближе».</p>
+  <ol>
+    <li><span class="how">Как я отношусь к этому человеку</span><br><span class="q">Как я отношусь к этому человеку?</span></li>
+    <li><span class="how">Как он видит наши отношения</span><br><span class="q">Как, по-моему, он видит наши отношения? Чем это отличается от того, как вижу их я?</span></li>
+    <li><span class="how">Что сделать</span><br><span class="q">Что мне сделать, чтобы наши отношения стали крепче?</span></li>
+  </ol>
+  <p class="src">Откуда: расклад «Стрекоза и муравей» (колода «Метафауна», психолог Наталья Извекова), <a href="https://mak.arcanes.ru/load/0-0-0-21-20" target="_blank" rel="noopener">mak.arcanes.ru</a>. «По-моему» я добавила потому, что карта показывает, как видит человек, а не что думает другой: у метафорических карт нет значений, как у карт для гадания.</p>
+</section>
+
+<section class="var">
+  <div><span class="tag">Новая тема · 2 карты вслепую</span></div>
+  <h2>Я сама</h2>
+  <p class="meta">Сейчас «с собой» стоит внутри «Отношений». Можно сделать отдельной темой.</p>
+  <ol>
+    <li><span class="how">Какой меня видят другие</span><br><span class="q">Что во мне видят люди вокруг?</span></li>
+    <li><span class="how">Какая я на самом деле</span><br><span class="q">Какая я на самом деле?</span></li>
+  </ol>
+  <p class="src">Откуда: расклад «Снаружи и внутри» (колода OkNo, Наталья Извекова), <a href="https://mak.arcanes.ru/load/0-0-0-16-20" target="_blank" rel="noopener">mak.arcanes.ru</a>.</p>
+</section>
+
+<section class="var">
+  <div><span class="tag">Работа · 3 карты вслепую</span></div>
+  <h2>Работа или любимое дело</h2>
+  <p class="meta">Сейчас: «Где я сейчас», «Что меня сдерживает», «Мой следующий шаг».</p>
+  <ol>
+    <li><span class="how">Что мне помогает</span><br><span class="q">Что помогает мне взлететь в моём деле?</span></li>
+    <li><span class="how">Что меня тормозит</span><br><span class="q">Что меня тормозит и мешает идти дальше?</span></li>
+    <li><span class="how">Что поможет</span><br><span class="q">Что может помочь мне это исправить?</span></li>
+  </ol>
+  <p class="src">Откуда: расклад «Крылья, ноги и хвосты» (колода «Метафауна»), <a href="https://mak.arcanes.ru/load/0-0-0-21-20" target="_blank" rel="noopener">mak.arcanes.ru</a>.</p>
+</section>
+
+<section class="var">
+  <div><span class="tag">Будущее · 3 карты вслепую</span></div>
+  <h2>Новый этап</h2>
+  <p class="meta">Сейчас: «Ближайшее будущее» — «Что уходит», «Что приходит», «На что мне опереться». Такого расклада я в источниках не нашла. Предлагаю тему про начало нового: месяца, года, работы, переезда.</p>
+  <ol>
+    <li><span class="how">Что я беру с собой</span><br><span class="q">Что я возьму с собой из прошлого?</span></li>
+    <li><span class="how">Чего я хочу</span><br><span class="q">Что я хочу получить в новом?</span></li>
+    <li><span class="how">Как поступать</span><br><span class="q">Как мне стоит поступать, чтобы получить то, чего я хочу?</span></li>
+  </ol>
+  <p class="src">Откуда: первые два вопроса — расклад «Лягушка-путешественница» (колода «Метафауна»), <a href="https://mak.arcanes.ru/load/0-0-0-21-20" target="_blank" rel="noopener">mak.arcanes.ru</a>. Третий — из расклада «Совет и предупреждение», <a href="https://mak.arcanes.ru/load/0-0-0-3-20" target="_blank" rel="noopener">mak.arcanes.ru</a>. Соединила их я.</p>
+</section>
+
+<section class="var">
+  <div><span class="tag">Тревога · 1 открыто + 2 вслепую</span></div>
+  <h2>Ситуация, которая не даёт покоя</h2>
+  <p class="meta">Сейчас: «Что на самом деле происходит», «Что я чувствую в глубине», «Что поможет мне успокоиться», все три вслепую.</p>
+  <ol>
+    <li><span class="how">Что меня тревожит, карта выбирается открыто</span><br><span class="q">Какая картинка похожа на то, что меня тревожит?</span></li>
+    <li><span class="how">Что делать</span><br><span class="q">Что мне сделать, чтобы стало по-другому?</span></li>
+    <li><span class="how">Поддержка</span><br><span class="q">Как я могу поддержать себя прямо сейчас?</span></li>
+  </ol>
+  <p class="src">Откуда: расклад «Мой страх» (колода OkNo), <a href="https://mak.arcanes.ru/load/0-0-0-16-20" target="_blank" rel="noopener">mak.arcanes.ru</a>. Там же сказано, что, когда человек сильно волнуется, карты лучше брать открыто, и что после тяжёлой карты обязательно нужна карта-ресурс. Третий вопрос взят из расклада «Диалог трёх Я» для приступов тревоги, <a href="https://macards.ru/upload/iblock/297/0f1lbopftra6zo1e6law9qgmm7ocjkok.pdf" target="_blank" rel="noopener">macards.ru</a>.</p>
+</section>
+
+<section class="var">
+  <div><span class="tag">Карта дня и «Свой вопрос»</span></div>
+  <h2>Вопросы под картой</h2>
+  <ol>
+    <li><span class="how">Карта дня, сейчас:</span> «Что я вижу на карте и что чувствую? Что она подсказывает мне про сегодняшний день?»<br><span class="how">Предлагаю:</span> <span class="q">О чём эта карта для меня? Как она связана с тем, что у меня сейчас дома или на работе?</span><br><span class="src" style="border:0;padding:0">«Метафора дня», <a href="https://macards.ru/upload/iblock/297/0f1lbopftra6zo1e6law9qgmm7ocjkok.pdf" target="_blank" rel="noopener">macards.ru</a></span></li>
+    <li><span class="how">«Свой вопрос», под картой сейчас:</span> «Что она отвечает на мой вопрос?»<br><span class="how">Предлагаю:</span> <span class="q">Что эта карта говорит обо мне и о моём вопросе?</span><br><span class="src" style="border:0;padding:0">общие вопросы к картам, <a href="https://mak.arcanes.ru/load/0-0-0-16-20" target="_blank" rel="noopener">mak.arcanes.ru</a></span></li>
+    <li><span class="how">«Свой вопрос», пример в поле сейчас:</span> «что думает обо мне мой муж».<br><span class="how">Предлагаю:</span> <span class="q">как я вижу наши отношения с мужем</span>. Карта не узнаёт мысли другого человека, она показывает ваш взгляд.</li>
+  </ol>
+</section>
+
+</div>
