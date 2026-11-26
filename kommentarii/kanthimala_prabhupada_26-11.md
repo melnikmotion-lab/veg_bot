@@ -25,7 +25,7 @@ I hope this meets you in good health. Your ever well-wisher, A.C. Bhaktivedanta 
 - Нираньджане (студент в университете), 23.04.1974: «всегда носи бусы кунти на шее и знаки тилаки. Люди будут спрашивать…». https://prabhupadabooks.com/letters/hyderabad/april/23/1974/niranjana
 
 ## 2. Кантхи — маленькие бусы, туго на шее
-- Индире и Экаяни, Сан-Франциско, 17.12.1967: «вчера было посвящение, ваши бусы освящены. Возьмите нить маленьких бус, чтобы закрепить на шее, а большие — чтобы повторять по правилам». https://prabhupadabooks.com/letters/san_francisco/december/17/1967/indira_iris_mendoza_ekayani_esther_mendoza
+- Индире и Экаяни, Сан-Франциско, 17.12.1967: «вчера было посвящение, ваши бусы освящены. Возьмите нить маленьких бус, чтобы закрепить на шее, а большие — чтобы повторять по правилам». https://prabhupadabooks.com/letters/san_francisco/december/17/1967/indira_iris_mendoza/ekayani_esther_mendoza
 - Лиласукхе, 17.12.1967: «Достань маленькие бусы, чтобы закрепить их на шее». https://prabhupadabooks.com/letters/san_francisco/december/17/1967/lilasukha
 - Туго: беседы 721016sbvrn и 740701inmel («бусы на шее должны быть тугими») — из прошлой проверки по vedabase.
 
@@ -39,7 +39,7 @@ I hope this meets you in good health. Your ever well-wisher, A.C. Bhaktivedanta 
 - Единственное место — письмо Говинде даси 20.11.1971 («не меньше двух рядов… мой Гуру Махарадж носил пять»), среди ответов о мурти Панча-таттвы. Других писем о числе рядов нет.
 
 ## 5. Из чего
-- Письмо о Туласи (сентябрь 1977, сборник без даты): из сухих веток Туласи «можно делать бусы, как бусы на шею, а из больших ветвей — бусы для джапы». https://prabhupadabooks.com/letters/unknown_place/unknown_date/september/01/1977/various
+- Письмо о Туласи (сентябрь 1977, сборник без даты): из сухих веток Туласи «можно делать бусы, как бусы на шею, а из больших ветвей — бусы для джапы». https://prabhupadabooks.com/letters/unknown_place_unknown_date/september/01/1977/various
 
 ## 6. Шастра в книгах Прабхупады
 - «Нектар преданности», гл. 9: Падма-пурана — кто носит бусы туласи на шее и тилаку, тот преданный Вишну, его присутствие очищает мир; Сканда-пурана — к тем, у кого бусы туласи на шее и груди, не приходят ямадуты. https://prabhupadabooks.com/nod/9/tilaka_tulasi_beads_and_flower_garlands
