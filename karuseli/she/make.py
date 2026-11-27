@@ -88,23 +88,13 @@ def spark(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPARK.
 # «пришлю ссылку» — отдельной заметной строкой; жёлтые только звёздочки
 SPL = SPARK.replace("#E8B93A", "#EBCF7E")
 def spl(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPL.replace("{w}", str(w))}</div>'
-PRODUCT = ('<div class=a style="left:0;right:0;top:80px;text-align:center">' + strip("Напишите «САД» в комментариях", 0, -1, 58) + '</div>'
-           # справа из-за коробки веером выглядывают три открытые карты, слева лежат две рубашкой вверх
-           + '<img class=a src=k/38.jpg style="left:700px;top:300px;height:290px;border-radius:12px;transform-origin:50% 90%;transform:rotate(2deg);box-shadow:0 12px 20px -10px rgba(122,31,61,.45)">'
-           + '<img class=a src=k/26.jpg style="left:730px;top:300px;height:290px;border-radius:12px;transform-origin:50% 90%;transform:rotate(14deg);box-shadow:0 12px 20px -10px rgba(122,31,61,.45)">'
-           + '<img class=a src=k/13.jpg style="left:760px;top:300px;height:290px;border-radius:12px;transform-origin:50% 90%;transform:rotate(26deg);box-shadow:0 12px 20px -10px rgba(122,31,61,.45)">'
-           + '<img class=a src=back_sad.jpg style="left:40px;top:560px;height:290px;border-radius:12px;transform-origin:50% 90%;transform:rotate(-18deg);box-shadow:0 12px 20px -10px rgba(122,31,61,.45)">'
-           + '<img class=a src=back_sad.jpg style="left:95px;top:590px;height:290px;border-radius:12px;transform-origin:50% 90%;transform:rotate(-6deg);box-shadow:0 12px 20px -10px rgba(122,31,61,.45)">'
-           + '<div class=a style="left:50%;top:800px;width:493px;height:60px;margin-left:-226px;border-radius:50%;background:radial-gradient(ellipse,rgba(122,31,61,.35),transparent 70%);filter:blur(6px)"></div>'
-           + '<div class=a style="left:50%;top:230px;width:433px;height:600px;margin-left:-216px;perspective:1600px;z-index:2">'
-           '<div style="position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(14deg) rotateY(-16deg)">'  # коробка — настоящий объём: лицо, правый бок, нижний торец
-           '<img src=box_front.jpg style="position:absolute;left:0;top:0;width:433px;height:600px;transform:translateZ(65px)">'
-           '<img src=box_side.jpg style="position:absolute;left:151px;top:0;width:131px;height:600px;transform:rotateY(90deg) translateZ(216px);filter:brightness(.85)">'
-           '<img src=box_top.jpg style="position:absolute;left:0;top:234px;width:433px;height:131px;transform:rotateX(-90deg) translateZ(300px);filter:brightness(.75)">'
-           '</div></div>'
-           + spl(54, 300, 200) + spl(40, 770, 870) + spl(34, 250, 900) +
-           '<div class=a style="left:0;right:0;top:950px;text-align:center">' + strip("и я пришлю вам ссылку на колоду", 1, 1, 54) + '</div>'
-           '<p class="a small" style="left:0;right:0;top:1080px;text-align:center">Женские метафорические карты ручной работы</p>')
+PRODUCT = ('<div class=a style="left:0;right:0;top:70px;text-align:center">' + strip("Напишите «САД» в комментариях", 0, -1, 58) + '</div>'
+           # фото колоды из Flow (Лила 27.11) — приклеено на лист скотчем, как фотографии в образцах
+           '<div class=a style="left:50%;top:190px;margin-left:-290px;width:580px;padding:14px 14px 14px;background:#fff;transform:rotate(-2deg);box-shadow:0 30px 44px -20px rgba(122,31,61,.45)">'
+           '<img src=foto_koloda_2.jpg style="display:block;width:552px;height:720px;object-fit:cover"><i class=tape style="left:50%;top:-22px"></i></div>'
+           + spl(54, 170, 230) + spl(38, 880, 300) + spl(46, 870, 840) + spl(32, 190, 880) +
+           '<div class=a style="left:0;right:0;top:985px;text-align:center">' + strip("и я пришлю вам ссылку на колоду", 1, 1, 54) + '</div>'
+           '<p class="a small" style="left:0;right:0;top:1105px;text-align:center">Женские метафорические карты ручной работы</p>')
 
 GRID = "linear-gradient(#EFD3DE 2px,transparent 2px),linear-gradient(90deg,#EFD3DE 2px,transparent 2px)"
 css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-family:I;src:url(../inter-cyr.woff2)}}@font-face{{font-family:I;src:url(../inter.woff2);unicode-range:U+0000-00FF,U+2000-206F}}
