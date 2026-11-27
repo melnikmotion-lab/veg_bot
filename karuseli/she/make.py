@@ -84,14 +84,15 @@ def strip(t, k, r, size=84):
 SPARK = '<svg viewBox="-50 -50 100 100" width={w}><path d="M0-48C4-12 12-4 48 0 12 4 4 12 0 48-4 12-12 4-48 0-12-4-4-12 0-48Z" fill="#E8B93A"/></svg>'
 def spark(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPARK.replace("{w}", str(w))}</div>'
 # реклама: сверху призыв, по центру сияющая коробка, снизу что будет; цены и «я нарисовала» нет — люди с карусели меня не знают (Лила 27.11)
-# реклама по образцу «конверт» (Pinterest, Лила 27.11): сверху призыв, из открытого конверта по центру сияет коробка,
-# на конверте — что будет дальше; цены и «я нарисовала» нет — люди с карусели меня не знают
-PRODUCT = (f'<div class="a strips" style="left:0;right:0;top:70px;align-items:center">{strip("Напишите «САД»", 0, -1.5, 76)}{strip("в комментариях", 1, 1.5, 76)}</div>'
-           '<div class="a env-flap"></div><div class="a env-back"></div>'
-           '<div class="a glow"><i></i></div><img class="a box" src="box_sad.png">'
-           '<div class="a env-front"><span>и я пришлю вам<br>ссылку на колоду</span></div>'
-           + stk(HEART, 60, 510, 850, -8) + spark(64, 170, 360) + spark(40, 860, 330) + spark(50, 880, 600) + spark(34, 150, 620) +
-           '<p class="a small" style="left:0;right:0;top:1140px;text-align:center">Женские метафорические карты ручной работы</p>')
+# реклама (Лила 27.11): колода лежит ровно на листе в клетку и смотрит на нас, от неё тень; призыв одной строкой сверху,
+# «пришлю ссылку» — отдельной заметной строкой; жёлтые только звёздочки
+SPL = SPARK.replace("#E8B93A", "#EBCF7E")
+def spl(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPL.replace("{w}", str(w))}</div>'
+PRODUCT = ('<div class=a style="left:0;right:0;top:80px;text-align:center">' + strip("Напишите «САД» в комментариях", 0, -1, 58) + '</div>'
+           '<img class=a src=box_front.jpg style="left:50%;top:200px;height:690px;transform:translateX(-50%);border-radius:14px;box-shadow:0 34px 50px -22px rgba(122,31,61,.5),0 6px 14px rgba(122,31,61,.12)">'
+           + spl(64, 150, 260) + spl(40, 880, 230) + spl(52, 870, 760) + spl(34, 170, 820) +
+           '<div class=a style="left:0;right:0;top:950px;text-align:center">' + strip("и я пришлю вам ссылку на колоду", 1, 1, 54) + '</div>'
+           '<p class="a small" style="left:0;right:0;top:1080px;text-align:center">Женские метафорические карты ручной работы</p>')
 
 GRID = "linear-gradient(#EFD3DE 2px,transparent 2px),linear-gradient(90deg,#EFD3DE 2px,transparent 2px)"
 css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-family:I;src:url(../inter-cyr.woff2)}}@font-face{{font-family:I;src:url(../inter.woff2);unicode-range:U+0000-00FF,U+2000-206F}}
