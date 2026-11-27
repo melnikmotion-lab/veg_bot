@@ -88,13 +88,12 @@ def spark(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPARK.
 # «пришлю ссылку» — отдельной заметной строкой; жёлтые только звёздочки
 SPL = SPARK.replace("#E8B93A", "#EBCF7E")
 def spl(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPL.replace("{w}", str(w))}</div>'
-PRODUCT = ('<div class=a style="left:0;right:0;top:70px;text-align:center">' + strip("Напишите «САД» в комментариях", 0, -1, 58) + '</div>'
-           # фото колоды из Flow (Лила 27.11) — приклеено на лист скотчем, как фотографии в образцах
-           '<div class=a style="left:50%;top:190px;margin-left:-290px;width:580px;padding:14px 14px 14px;background:#fff;transform:rotate(-2deg);box-shadow:0 30px 44px -20px rgba(122,31,61,.45)">'
-           '<img src=foto_koloda_2.jpg style="display:block;width:552px;height:720px;object-fit:cover"><i class=tape style="left:50%;top:-22px"></i></div>'
-           + spl(54, 170, 230) + spl(38, 880, 300) + spl(46, 870, 840) + spl(32, 190, 880) +
-           '<div class=a style="left:0;right:0;top:985px;text-align:center">' + strip("и я пришлю вам ссылку на колоду", 1, 1, 54) + '</div>'
-           '<p class="a small" style="left:0;right:0;top:1105px;text-align:center">Женские метафорические карты ручной работы</p>')
+# фото колоды из Flow на весь слайд, надписи прямо на фото (Лила 27.11)
+PRODUCT = ('<img class=a src=foto_koloda_1.jpg style="left:0;top:0;width:1080px;height:1350px;object-fit:cover">'
+           '<div class=a style="left:0;right:0;bottom:0;height:260px;background:linear-gradient(rgba(236,226,206,0),rgba(236,226,206,.92) 45%,#ECE2CE)"></div>'  # светлая дымка внизу, чтобы надпись и SHE не лежали на картах
+           '<div class=a style="left:0;right:0;top:90px;text-align:center">' + strip("Напишите «САД» в комментариях", 0, -1, 58) + '</div>'
+           '<div class=a style="left:0;right:0;top:1010px;text-align:center">' + strip("и я пришлю вам ссылку на колоду", 1, 1, 54) + '</div>'
+           '<p class="a small" style="left:0;right:0;top:1150px;text-align:center;color:#7A1F3D">Женские метафорические карты ручной работы</p>')
 
 GRID = "linear-gradient(#EFD3DE 2px,transparent 2px),linear-gradient(90deg,#EFD3DE 2px,transparent 2px)"
 css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-family:I;src:url(../inter-cyr.woff2)}}@font-face{{font-family:I;src:url(../inter.woff2);unicode-range:U+0000-00FF,U+2000-206F}}
