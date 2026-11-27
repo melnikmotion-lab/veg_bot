@@ -16,7 +16,7 @@ C = {
  "2_meshaet": ("Что мешает вам<br>двигаться дальше?", [
    ("34", "Страх", "Красный дракон велик и страшен, но держат его тонкие синие нитки. Страх тоже кажется больше, чем он есть, пока к нему не подойдёшь. Чего вы боитесь сейчас?"),
    ("14", "Мысли по кругу", "Она свернулась в траве, и стебли оплели её так, что не видно, где она сама. Так бывает, когда долго думаешь об одном. О чём вы думаете по кругу?"),
-   ("37", "Старые привычки", "Корни проросли сквозь каменный коридор, и маленькая женщина в красном пробирается между ними. Каждый корень когда-то был тонким. Какая привычка загородила вам дорогу?")], (1, 2, 0)),
+   ("37", "Старая привычка", "Корни проросли сквозь каменный коридор, и маленькая женщина в красном пробирается между ними. Каждый корень когда-то был тонким. Какая привычка загородила вам дорогу?")], (1, 2, 0)),
  "3_nuzhno": ("Что вам сейчас<br>нужнее всего?", [
    ("36", "Отдых", "Она лежит в ванне с маской на лице, держит стакан, и ей никуда не надо идти. Дела стоят за дверью и подождут. Когда вы отдыхали так в последний раз?"),
    ("31", "Отпустить", "Она лежит в траве, раскинув руки, и не смотрит, кто ходит рядом. Ей хорошо оттого, что она ничего не держит. Что вы можете отпустить сегодня?"),
@@ -33,12 +33,13 @@ def smooth(pts):  # Catmull-Rom → кривые Безье
         d += f" C{c1[0]:.0f} {c1[1]:.0f} {c2[0]:.0f} {c2[1]:.0f} {p2[0]:.0f} {p2[1]:.0f}"
     return d
 
-Q3 = {"1_izmenit": ("Что резко", "изменит", "вашу жизнь?"), "2_meshaet": ("Что мешает", "вам двигаться", "дальше?"),
-      "3_nuzhno": ("Что вам", "сейчас нужнее", "всего?")}
+# заголовок обложки: строка шрифтом, слово на плашке, конец от руки
+Q3 = {"1_izmenit": ("Что резко изменит", "вашу жизнь", "на этой неделе?"), "2_meshaet": ("Что мешает вам", "двигаться дальше", "на этой неделе?"),
+      "3_nuzhno": ("Что вам сейчас", "нужнее всего", "на этой неделе?")}
 COL = ("#7A1F3D", "#C2668A", "#D9A21B")  # у каждой линии свой цвет: бордовый, розовый, золотой
 STRIP = (("#F4C3D3", INK), (INK, "#FFF6EE"), ("#F3DFA6", INK))  # плашки: розовая, бордовая, золотая
 BACK_Y = (480, 750, 1020)  # рубашки на обложке сверху вниз, высота 230
-LEVELS = (380, 760, 1140)
+LEVELS = (595, 865, 1135)  # уровни линий = высота рубашек
 CARD_TOP, CARD_H = 130, 600   # карта на слайдах 3–5
 CW = round(CARD_H * 800 / 1118) + 20  # ширина карты с белой рамкой
 MID = CARD_TOP + CARD_H // 2  # здесь линия входит в карту
@@ -49,21 +50,20 @@ def lines(dest, seed):
     perms = list(__import__("itertools").permutations(range(3)))
     last = tuple(2 - d for d in dest)  # на выходе из клубка линии лежат в том порядке, в каком идут к картам
     cols = []; prev = None
-    for x in (1250, 1500, 1750):
-        p = rnd.choice([q for q in perms if q != prev and q != last and (prev is None or sum(a != b for a, b in zip(q, prev)) >= 2)])
-        cols.append((x, p)); prev = p
-    cols.append((1980, last))
+    # линии идут ровно до 2-го слайда и путаются дважды — около x=1280 и x=1550, вдали от краёв слайдов
+    mid = rnd.choice([q for q in perms if q != (0, 1, 2) and q != last])
+    cols = [(1150, (0, 1, 2)), (1400, mid), (1700, last)]
     out = ""
     for i in range(3):
         d = dest[i]; sy = BACK_Y[i] + 115
-        pts = [(345, sy), (700, sy), (980, sy + rnd.randint(-40, 40))]
+        pts = [(345, sy), (700, sy)]
         for x, p in cols:
-            pts.append((x + rnd.randint(-30, 30), LEVELS[p[i]] + rnd.randint(-40, 40)))
+            pts.append((x + rnd.randint(-20, 20), LEVELS[p[i]] + rnd.randint(-25, 25)))
         ex = 2160 + d * 1080 + END_X
-        if d == 0: pts += [(2250, 640), (2390, MID), (ex, MID)]
+        if d == 0: pts += [(1950, 1135 + rnd.randint(-20, 20)), (2200, 800), (2390, MID), (ex, MID)]
         else:
             top = 80 if d == 1 else 40
-            pts += [(2140 - 20 * d, 340 - 110 * d), (2330 - 30 * d, top), (ex - 330, top), (ex - 140, MID - 80), (ex, MID)]
+            pts += [(1900, 540 - 120 * d), (2080 - 30 * d, top), (ex - 330, top), (ex - 140, MID - 80), (ex, MID)]  # подъём наверх — внутри 2-го слайда
         out += (f'<path d="{smooth(pts)}" stroke="{COL[i]}"/><circle cx="345" cy="{sy}" r="13" fill="{COL[i]}"/>'
                 f'<circle cx="{ex}" cy="{MID}" r="13" fill="{COL[i]}"/>')
     return (f'<svg class=lines viewBox="0 0 5400 1350" width=5400 height=1350><g fill=none '
@@ -100,7 +100,7 @@ css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-f
 .cw{{position:relative;display:inline-block}}.a.cw{{position:absolute}}
 .bk{{position:absolute;left:46px;display:flex;align-items:center;gap:22px}}
 .bk b{{font:400 60px/74px K;width:84px;height:84px;text-align:center;border:5px solid;border-radius:50%;transform:rotate(-6deg)}}
-.bk img{{height:230px;display:block;border:8px solid #fff;box-shadow:0 14px 26px -12px rgba(122,31,61,.5)}}
+.bk img{{height:230px;display:block;border-radius:12px;box-shadow:0 14px 26px -12px rgba(122,31,61,.5)}}
 .oval{{font:400 48px/1.1 H;color:{INK};border:4px dashed {ROSE};border-radius:50%;padding:26px 40px;transform:rotate(-3deg)}}
 .note{{position:absolute;background:#FFFDF9;box-shadow:0 18px 30px -16px rgba(122,31,61,.35);padding:40px 50px 34px 76px;text-align:left}}
 .note .clip{{position:absolute;top:-46px;left:18px}}
@@ -108,6 +108,7 @@ css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-f
 .pin{{position:absolute;top:-16px;left:50%;width:34px;height:34px;margin-left:-17px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#E07A9E,#7A1F3D);box-shadow:0 6px 8px rgba(0,0,0,.25)}}
 .card{{height:{CARD_H}px;display:block;border:10px solid #fff;box-shadow:0 26px 44px -18px rgba(122,31,61,.45)}}
 .box{{height:500px;filter:drop-shadow(0 26px 34px rgba(122,31,61,.3))}}
+.ttl{{left:0;top:70px;width:1080px;text-align:center}}.t1{{font:400 80px/1.1 K;color:{INK};margin-bottom:10px}}.t3{{font:400 76px/1 H;color:{ROSE};margin-top:8px}}
 .small{{font:400 30px/1.45 I;color:{SOFT}}}"""
 
 n = {}
@@ -116,11 +117,11 @@ for seed, (name, (q, cards, dest)) in enumerate(C.items()):
     order = [cards[dest.index(k)] for k in range(3)]  # слайд 3 — карта линии, у которой dest=0, и т. д.
     a = []
     q1, q2, q3 = Q3[name]
-    a.append(f'<div class="a strips" style="left:70px;top:80px">{strip(q1,0,-2)}{strip(q2,1,1.5)}{strip(q3,2,-1.5)}</div>')
-    a.append('<div class="a oval" style="left:700px;top:390px;font-size:44px;text-align:center">выберите<br>1, 2 или 3</div>')
-    a.append(stk(HEART, 70, 960, 300, 12))
-    a += [f'<div class="bk" style="top:{y}px"><b style="color:{COL[i]};border-color:{COL[i]}">{i+1}</b><div class=cw><img src="back_sad.jpg"><i class=tape style="left:50%;top:-18px;width:110px;height:36px"></i></div></div>' for i, y in enumerate(BACK_Y)]
-    a.append('<div class="a" style="left:1330px;top:90px;width:500px;background:#F4C3D3;padding:48px 30px 40px;transform:rotate(-3deg);box-shadow:0 18px 26px -14px rgba(122,31,61,.4);text-align:center;font:400 62px/1.1 H;color:#7A1F3D"><i class=pin></i>Не отрывайте глаз от своей линии</div>')
+    a.append(f'<div class="a ttl"><div class=t1>{q1}</div>{strip(q2,0,-1.5,96)}<div class=t3>{q3}</div></div>')
+    a.append('<div class="a oval" style="left:640px;top:440px;font-size:42px;text-align:center">выберите<br>1, 2 или 3</div>')
+    a.append(stk(HEART, 60, 960, 420, 12))
+    a += [f'<div class="bk" style="top:{y}px"><b style="color:{COL[i]};border-color:{COL[i]}">{i+1}</b><img src="back_sad.jpg"></div>' for i, y in enumerate(BACK_Y)]
+    a.append('<div class="a" style="left:1330px;top:90px;width:500px;background:#F4C3D3;padding:48px 30px 40px;transform:rotate(-3deg);box-shadow:0 18px 26px -14px rgba(122,31,61,.4);text-align:center;font:400 62px/1.1 H;color:#7A1F3D"><i class=pin></i>Следите за своей линией и листайте →</div>')
     a.append(stk(STAR, 60, 1960, 1180, 10)); a.append(stk(FLOWER, 90, 1150, 1180, 0))
     for k, (c, t, x) in enumerate(order):
         X = 2160 + k * 1080
