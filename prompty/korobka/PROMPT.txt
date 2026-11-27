@@ -1,18 +1,20 @@
-PROMPT 1 — open box (attach: the box image you already got + product images 5, 6, 3, 4)
+PROMPT 1 — open box. Attach: reference box photo + product images 5, 6 (3d), 3, 4.
 
-Redo this gift box image with these changes:
+Create a photorealistic product photo of an open gift box, in the style of the attached reference (pink rigid gift box, lid open, satin bow on the lid).
 
-1. Background: solid flat pure green (#00FF00), evenly lit, no gradient, no shadows on the background, no green reflections on the box. (We will cut it out.)
-2. Size in frame: the whole box, including the open lid, must be fully visible and smaller — it should take about 60% of the image, with plenty of empty green space around it on all sides. Same camera angle: from above and slightly in front, about 45 degrees.
-3. Real proportions of the items — they must NOT all be the same size:
-   - Planner "Мой идеальный планер 2027" (image 3): the largest item, a landscape (horizontal) rectangle about 21 × 15 cm, lying flat across the back of the box.
-   - SHE journal (image 4): a hardcover A5 book about 15 × 21 cm, about 2 cm thick, lying flat in the front right — clearly bigger than the card decks.
-   - Card deck boxes "Язык эмоций" (image 5) and "Тайный сад" (image 6): small, about 9 × 12 cm, about 3 cm thick, lying flat side by side in the front left.
-   Copy the artwork and lettering of all items exactly, do not redraw them.
-4. Make it a bit richer, still gentle and pink: tiny gold-foil stars printed on the lid, a glossy satin bow with a gold bead, a few small pink paper roses and a couple of pearls in the shredded paper, soft warm light with a subtle glow inside the box.
+Background: solid flat pure green (#00FF00), evenly lit, no gradient, no shadows on the background, no green reflections on the box — it will be cut out.
 
-Square image.
+Framing: the whole box, including the open lid, is fully visible and takes about 60% of the square image, with plenty of empty green space around it on all sides. Camera looks from above and slightly in front, about 45 degrees.
 
-PROMPT 2 — the same box closed (send right after you like the result of prompt 1)
+The box: rectangular rigid cardboard gift box, light pink outside (#F4C3D2), magnetic lid open and standing upright behind it. The inside of the lid is printed with tiny gold-foil and white stars on light pink. Across the lid, a glossy pink satin ribbon with a neat bow and a small gold bead in the center. A short pink satin pull tab at the front center. The inside walls and bottom are lined with light pink paper (#F9DDE6) with small stars in pink (#E79AB4), dark pink (#C2668A) and white. Pink shredded paper inside, with a few small pink paper roses and a couple of pearls. Soft warm light, a subtle glow inside the box.
 
-Now show exactly the same box, same size, same position and same camera angle, on the same pure green (#00FF00) background — but closed: the lid is shut, and a pink satin ribbon is tied around the closed box with the same bow and gold bead on top. Nothing else changes.
+Inside the box, neatly arranged like a real gift set, lie these items from the attached images, in real proportions (they must NOT be the same size). Copy their artwork and lettering exactly, do not redraw them:
+- Planner "Мой идеальный планер 2027" (image 3): the largest item, a landscape (horizontal) card about 21 × 15 cm, lying flat across the back of the box.
+- SHE journal (image 4): a pink hardcover A5 book about 15 × 21 cm, about 2 cm thick, light page edges visible, lying flat in the front right. Clearly bigger than the card decks.
+- Card deck boxes "Язык эмоций" (image 5) and "Тайный сад" (image 6): small, about 9 × 12 cm, about 3 cm thick, lying flat side by side in the front left.
+
+No other objects, no people, no added text. Square image.
+
+PROMPT 2 — the same box closed (send in the same chat after prompt 1)
+
+Show exactly the same box, same size, same position and same camera angle, on the same pure green (#00FF00) background, but closed: the lid is shut, and a pink satin ribbon is tied around the closed box with the same bow and gold bead on top. Nothing else changes.
