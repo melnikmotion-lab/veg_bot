@@ -1,20 +1,22 @@
-PROMPT 1 — open box. Attach: reference (pink mailer box) + product images 5, 6 (3d), 3, 4.
+PROMPT 1 — open box. Attach: the box reference (long box with hinged lid and compartments), the layout plan (image 11) and product images 3, 4, 5 (rovno), 6 (rovno).
 
-Create a photorealistic product photo of an open gift mailer box, in the style of the attached reference: a pink cardboard mailer box with a tuck-in lid opened back, side dust flaps standing up, seen in a three-quarter view from above.
+Create a photorealistic product photo of an open rigid gift box with compartments, in the style of the attached reference: a flat rectangular box whose lid is attached with a hinge along the back edge; the lid is fully open and stands upright behind the box, and the whole lid is clearly visible.
 
 Background: solid flat pure green (#00FF00), evenly lit, no gradient, no shadows on the background, no green reflections on the box — it will be cut out.
 
-Framing: the whole box, including the open lid and flaps, is fully visible and takes about 60% of the square image, with plenty of empty green space around it on all sides. Same angle as the reference: three-quarter view from above.
+Framing: the whole box and the whole open lid are fully visible and take about 60% of the square image, with empty green space on all sides. Camera looks from the front and above, about 40 degrees, like the reference.
 
-The box: matte pink cardboard mailer box (#E8899F outside). The inside of the lid and the inside walls are printed with small stars in light pink (#F9DDE6), dark pink (#C2668A) and white on pink. A small "SHE" logo in light gold on the front side of the box. Light pink shredded paper inside. Soft warm light.
+The box: inner size 38 × 30 cm, 4 cm deep, rigid cardboard. Outside light pink (#F4C3D2). The inside of the lid and the compartments are light pink (#F9DDE6) with small stars in pink (#E79AB4), dark pink (#C2668A) and white. Thin pink dividers make compartments exactly as in the layout plan (image 11).
 
-Inside the box, neatly arranged like a real gift set, lie these items from the attached images, in real proportions (they must NOT be the same size). Copy their artwork and lettering exactly, do not redraw them:
-- Planner "Мой идеальный планер 2027" (image 3): the largest item, a landscape (horizontal) card about 21 × 15 cm, lying flat at the back of the box.
-- SHE journal (image 4): a pink hardcover A5 book about 15 × 21 cm, about 2 cm thick, light page edges visible, lying flat in the front right. Clearly bigger than the card decks.
-- Card deck boxes "Язык эмоций" (image 5) and "Тайный сад" (image 6): small, about 9 × 12 cm, about 3 cm thick, lying flat side by side in the front left.
+Items, copied exactly from the attached images (artwork and lettering unchanged), in real sizes and placed exactly as in the layout plan:
+- Back left compartment: planner "Мой идеальный планер 2027" (image 3), a landscape card 21 × 15 cm, lying flat.
+- Front left compartment: two card deck boxes side by side, each 9 × 13 cm and 3 cm thick, lying flat face up: "Язык эмоций" (image 5) on the left, "Тайный сад" (image 6) on the right.
+- Right compartment: SHE journal (image 4), pink hardcover A5 book 15 × 21 cm, 2 cm thick, portrait orientation, lying flat.
+- Small front right compartment: light pink shredded paper with two small pink paper roses.
+The decks are clearly smaller than the planner and the journal.
 
-No other objects, no people, no added text. Square image.
+Soft warm light, soft shadows inside the box. No other objects, no people, no added text. Square image.
 
-PROMPT 2 — the same box closed (send in the same chat after prompt 1)
+PROMPT 2 — the same box closed (in the same chat, after prompt 1)
 
-Show exactly the same box, same size, same position and same camera angle, on the same pure green (#00FF00) background, but closed: the lid is tucked in and shut, and a red satin ribbon is tied around the closed box with a bow on top. Nothing else changes.
+Show exactly the same box, same size, same position and same camera angle, on the same pure green (#00FF00) background, but closed: the lid is shut, and a red satin ribbon is tied around the closed box with a bow on top. Nothing else changes.
