@@ -88,14 +88,14 @@ def spark(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPARK.
 # «пришлю ссылку» — отдельной заметной строкой; жёлтые только звёздочки
 SPL = SPARK.replace("#E8B93A", "#EBCF7E")
 def spl(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPL.replace("{w}", str(w))}</div>'
-# фото колоды из Flow на весь слайд (Лила 27.11, вариант 1): надписи без плашек, на светлой дымке сверху и снизу
+# последний слайд — вариант 1 из var2.py целиком, без изменений (Лила 27.11)
 PRODUCT = ('<img class=a src=foto_koloda_1.jpg style="left:0;top:0;width:1080px;height:1350px;object-fit:cover">'
   '<div class=a style="left:0;right:0;top:0;height:330px;background:linear-gradient(#EFE6D3 55%,rgba(239,230,211,0))"></div>'
-  '<div class=a style="left:0;right:0;bottom:0;height:360px;background:linear-gradient(rgba(239,230,211,0),#EFE6D3 50%)"></div>'
   '<div class=a style="left:0;right:0;top:60px;text-align:center;font:400 104px/1 K;color:#7A1F3D">Напишите «САД»</div>'
   '<div class=a style="left:0;right:0;top:180px;text-align:center;font:400 44px/1 I;letter-spacing:6px;color:#7A1F3D">В КОММЕНТАРИЯХ</div>'
-  '<div class=a style="left:0;right:0;top:1105px;text-align:center;font:400 62px/1.1 H;color:#7A1F3D">и я пришлю вам ссылку на колоду</div>'
-  '<div class=a style="left:0;right:0;top:1190px;text-align:center;font:400 28px/1.4 I;color:#7A6E80">Женские метафорические карты ручной работы</div>')
+  '<div class=a style="left:120px;right:120px;top:1060px;background:#FFF9F1;border-radius:28px;padding:30px 20px 26px;text-align:center;box-shadow:0 24px 40px -18px rgba(122,31,61,.45)">'
+  '<div style="font:400 50px/1.15 H;color:#7A1F3D">и я пришлю вам ссылку на колоду</div>'
+  '<div style="font:400 26px/1.4 I;color:#7A6E80;margin-top:8px">Женские метафорические карты ручной работы</div></div>')
 LOGO6 = '<div class="logo" style="left:0;bottom:22px"><img src=she_logo.png style="height:60px"></div>'
 
 GRID = "linear-gradient(#EFD3DE 2px,transparent 2px),linear-gradient(90deg,#EFD3DE 2px,transparent 2px)"
