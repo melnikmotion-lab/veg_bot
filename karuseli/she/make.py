@@ -92,8 +92,8 @@ def spl(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPL.repl
 PRODUCT = ('<img class=a src=foto_koloda_1.jpg style="left:0;top:0;width:1080px;height:1350px;object-fit:cover">'
            '<div class=a style="left:0;right:0;bottom:0;height:260px;background:linear-gradient(rgba(236,226,206,0),rgba(236,226,206,.92) 45%,#ECE2CE)"></div>'  # светлая дымка внизу, чтобы надпись и SHE не лежали на картах
            '<div class=a style="left:0;right:0;top:90px;text-align:center">' + strip("Напишите «САД» в комментариях", 0, -1, 58) + '</div>'
-           '<div class=a style="left:0;right:0;top:1010px;text-align:center">' + strip("и я пришлю вам ссылку на колоду", 1, 1, 54) + '</div>'
-           '<p class="a small" style="left:0;right:0;top:1150px;text-align:center;color:#7A1F3D">Женские метафорические карты ручной работы</p>')
+           '<div class=a style="left:0;right:0;top:1052px;text-align:center">' + strip("и я пришлю вам ссылку на колоду", 1, 1, 54) + '</div>'
+           '<p class="a small" style="left:0;right:0;top:1168px;text-align:center;color:#7A1F3D">Женские метафорические карты ручной работы</p>')
 
 GRID = "linear-gradient(#EFD3DE 2px,transparent 2px),linear-gradient(90deg,#EFD3DE 2px,transparent 2px)"
 css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-family:I;src:url(../inter-cyr.woff2)}}@font-face{{font-family:I;src:url(../inter.woff2);unicode-range:U+0000-00FF,U+2000-206F}}
