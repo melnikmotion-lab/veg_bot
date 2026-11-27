@@ -1,5 +1,6 @@
 # Карусели «Тайный сад» в стиле SHE. Механика Лилы (27.11): вопрос → выберите 1, 2 или 3 →
-# путаные линии идут через слайды 1–3 → каждая приводит к своей карте → карта со значением → реклама колоды.
+# линии идут через слайды 1–5, на 3, 4 и 5-м открывается одна карта со значением, 6-й — реклама колоды.
+# Дизайн по образцам Лилы с Pinterest (27.11): скрапбук — бумага в клетку, плашки, скотч, скрепки, наклейки.
 # python3 make.py && node shot.js
 import json, random
 INK, ROSE, SOFT = "#7A1F3D", "#C2668A", "#7A6E80"
@@ -32,63 +33,107 @@ def smooth(pts):  # Catmull-Rom → кривые Безье
         d += f" C{c1[0]:.0f} {c1[1]:.0f} {c2[0]:.0f} {c2[1]:.0f} {p2[0]:.0f} {p2[1]:.0f}"
     return d
 
-CARD_Y = (130, 500, 870)  # верх карт на 3-м слайде, высота 330
-LEVELS = (380, 760, 1140)
+Q3 = {"1_izmenit": ("Что резко", "изменит", "вашу жизнь?"), "2_meshaet": ("Что мешает", "вам двигаться", "дальше?"),
+      "3_nuzhno": ("Что вам", "сейчас нужнее", "всего?")}
 COL = ("#7A1F3D", "#C2668A", "#D9A21B")  # у каждой линии свой цвет: бордовый, розовый, золотой
-BACK_Y = (440, 735, 1030)  # рубашки на обложке сверху вниз, высота 250 — так же, как открытые карты в конце
+STRIP = (("#F4C3D3", INK), (INK, "#FFF6EE"), ("#F3DFA6", INK))  # плашки: розовая, бордовая, золотая
+BACK_Y = (480, 750, 1020)  # рубашки на обложке сверху вниз, высота 230
+LEVELS = (380, 760, 1140)
+CARD_TOP, CARD_H = 130, 600   # карта на слайдах 3–5
+CW = round(CARD_H * 800 / 1118) + 20  # ширина карты с белой рамкой
+MID = CARD_TOP + CARD_H // 2  # здесь линия входит в карту
+END_X = 300                   # точка, где линия входит в карту (от левого края слайда)
+
 def lines(dest, seed):
     rnd = random.Random(seed)
-    perms = [p for p in __import__("itertools").permutations(range(3))]
+    perms = list(__import__("itertools").permutations(range(3)))
+    last = tuple(2 - d for d in dest)  # на выходе из клубка линии лежат в том порядке, в каком идут к картам
     cols = []; prev = None
-    for x in (1250, 1560, 1870, 2180):  # в каждой колонке линии меняются местами — так они путаются
-        p = rnd.choice([q for q in perms if q != prev and (prev is None or sum(a != b for a, b in zip(q, prev)) >= 2)])
+    for x in (1250, 1500, 1750):
+        p = rnd.choice([q for q in perms if q != prev and q != last and (prev is None or sum(a != b for a, b in zip(q, prev)) >= 2)])
         cols.append((x, p)); prev = p
+    cols.append((1980, last))
     out = ""
     for i in range(3):
-        sy = BACK_Y[i] + 125
-        ey = CARD_Y[dest[i]] + 165
-        pts = [(370, sy), (700, sy), (980, sy + rnd.randint(-40, 40))]
+        d = dest[i]; sy = BACK_Y[i] + 115
+        pts = [(345, sy), (700, sy), (980, sy + rnd.randint(-40, 40))]
         for x, p in cols:
-            pts.append((x + rnd.randint(-40, 40), LEVELS[p[i]] + rnd.randint(-50, 50)))
-        pts += [(2470, ey), (2560, ey)]
-        out += (f'<path d="{smooth(pts)}" stroke="{COL[i]}"/><circle cx="370" cy="{sy}" r="13" fill="{COL[i]}"/>'
-                f'<circle cx="2560" cy="{ey}" r="13" fill="{COL[i]}"/>')
-    return (f'<svg class=lines viewBox="0 0 3240 1350" width=3240 height=1350><g fill=none '
+            pts.append((x + rnd.randint(-30, 30), LEVELS[p[i]] + rnd.randint(-40, 40)))
+        ex = 2160 + d * 1080 + END_X
+        if d == 0: pts += [(2250, 640), (2390, MID), (ex, MID)]
+        else:
+            top = 80 if d == 1 else 40
+            pts += [(2140 - 20 * d, 340 - 110 * d), (2330 - 30 * d, top), (ex - 330, top), (ex - 140, MID - 80), (ex, MID)]
+        out += (f'<path d="{smooth(pts)}" stroke="{COL[i]}"/><circle cx="345" cy="{sy}" r="13" fill="{COL[i]}"/>'
+                f'<circle cx="{ex}" cy="{MID}" r="13" fill="{COL[i]}"/>')
+    return (f'<svg class=lines viewBox="0 0 5400 1350" width=5400 height=1350><g fill=none '
             f'stroke-width=9 stroke-linecap=round stroke-linejoin=round>{out}</g></svg>')
 
-PRODUCT = '''<img class="box" src="box_sad.png">
-<h2>«Тайный сад»</h2><p>40 карт, которые я нарисовала сама. 18+</p>
-<div class="cta">Напишите <b>САД</b> в комментариях —<br>пришлю бесплатную карту дня</div>
-<div class="price">вся колода — $15, навсегда</div>'''
+CLIP = '<svg class=clip viewBox="0 0 60 150" width=46 height=115><path d="M18 130 V32 a16 16 0 0 1 32 0 V112 a21 21 0 0 1 -42 0 V44" fill=none stroke="#A3949E" stroke-width=6 stroke-linecap=round/></svg>'
+HEART = '<svg viewBox="0 0 100 92" width={w}><path d="M50 88C20 65 0 45 12 25 22 8 42 12 50 28 58 12 78 8 88 25 100 45 80 65 50 88Z" fill="#E59AB4"/></svg>'
+FLOWER = '<svg viewBox="-50 -50 100 100" width={w}>' + "".join(f'<ellipse rx="15" ry="28" cy="-22" transform="rotate({a})" fill="#F3DFA6"/>' for a in range(0, 360, 72)) + '<circle r="11" fill="#D9A21B"/></svg>'
+STAR = '<svg viewBox="-50 -50 100 100" width={w}><g stroke="#C2668A" stroke-width="13" stroke-linecap="round">' + "".join(f'<line y1="-40" y2="40" transform="rotate({a})"/>' for a in (0, 60, 120)) + '</g></svg>'
+def stk(svg, w, x, y, r=0): return f'<div class=stk style="left:{x}px;top:{y}px;transform:rotate({r}deg)">{svg.replace("{w}", str(w))}</div>'
+def strip(t, k, r, size=84):
+    b, c = STRIP[k]
+    return f'<span class=strip style="background:{b};color:{c};transform:rotate({r}deg);font-size:{size}px">{t}</span>'
 
+PRODUCT = (f'<div class=cw style="transform:rotate(-3deg)"><img class="box" src="box_sad.png"><i class=tape style="left:40%;top:-8px"></i></div>'
+           f'<div class=strips style="align-items:center">{strip("Напишите", 0, -2, 72)}{strip("«САД»", 1, 1.5, 80)}{strip("в комментариях —", 2, -1.5, 72)}</div>'
+           '<div class=oval>пришлю бесплатную карту дня</div>'
+           '<p class=small>«Тайный сад» — 40 карт, которые я нарисовала сама. 18+<br>Вся колода — $15, навсегда</p>')
+
+GRID = "linear-gradient(#EFD3DE 2px,transparent 2px),linear-gradient(90deg,#EFD3DE 2px,transparent 2px)"
 css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-family:I;src:url(../inter-cyr.woff2)}}@font-face{{font-family:I;src:url(../inter.woff2);unicode-range:U+0000-00FF,U+2000-206F}}
-*{{margin:0;box-sizing:border-box}}body{{width:3240px}}
-.s{{width:1080px;height:1350px;background:radial-gradient(120% 80% at 50% 30%,#FBF6F8 0%,#F5EEF2 55%,#EEDFE6 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:44px;padding:120px 100px;text-align:center;position:relative;overflow:hidden;font-family:I;color:{SOFT};flex:none}}
-.wrap{{position:relative;width:3240px;height:1350px;display:flex;background:radial-gradient(60% 90% at 30% 30%,#FBF6F8 0%,#F5EEF2 60%,#EEDFE6 100%)}}.wrap .s{{background:none}}
-.lines{{position:absolute;inset:0}}
-.logo{{position:absolute;bottom:48px;left:0;right:0;font:44px K;color:{ROSE};letter-spacing:4px}}.n{{position:absolute;bottom:56px;right:64px;font:26px I;color:#B9AAB4}}
-h1{{font:400 88px/1.1 K;color:{INK}}}h2{{font:400 72px/1.15 K;color:{INK}}}
-p{{font:400 36px/1.45 I}}.big{{font-size:44px}}.q{{color:{INK};margin-top:-24px}}
-.card{{height:600px;border-radius:26px;box-shadow:0 30px 60px -20px rgba(122,31,61,.35)}}
-.bk{{position:absolute;left:60px;display:flex;align-items:center;gap:26px}}.bk b{{font:400 72px K;width:50px}}.bk img{{height:250px;border-radius:14px;box-shadow:0 20px 40px -16px rgba(122,31,61,.45)}}
-.end{{position:absolute;left:2590px;height:330px;border-radius:16px;box-shadow:0 20px 40px -16px rgba(122,31,61,.4)}}
-.box{{height:600px;filter:drop-shadow(0 30px 40px rgba(122,31,61,.3))}}
-.cta{{font:400 40px/1.4 I;color:{INK}}}.cta b{{font-weight:700;letter-spacing:3px}}.price{{font:400 30px I;color:{SOFT}}}"""
+@font-face{{font-family:H;src:url(../cav5.woff2);unicode-range:U+0400-04FF}}@font-face{{font-family:H;src:url(../cav5l.woff2);unicode-range:U+0000-03FF,U+2000-206F}}
+*{{margin:0;box-sizing:border-box}}body{{width:5400px}}
+.wrap,.s{{background-color:#FCF6F1;background-image:{GRID};background-size:64px 64px}}
+.wrap{{position:relative;width:5400px;height:1350px;font-family:I;color:{SOFT};overflow:hidden}}
+.s{{width:1080px;height:1350px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;padding:90px 90px 150px;text-align:center;position:relative;overflow:hidden;font-family:I;color:{SOFT}}}
+.lines{{position:absolute;inset:0}}.a{{position:absolute}}
+.logo{{position:absolute;bottom:44px;width:1080px;text-align:center;font:44px K;color:{ROSE};letter-spacing:4px}}.s .logo{{left:0}}
+.n{{position:absolute;bottom:52px;font:26px I;color:#B9AAB4}}
+.strips{{display:flex;flex-direction:column;align-items:flex-start;gap:14px}}
+.strip{{display:inline-block;font-family:K;line-height:1.15;padding:6px 34px 12px;box-shadow:0 6px 14px -8px rgba(122,31,61,.35)}}
+.stk{{position:absolute}}
+.tape{{position:absolute;width:150px;height:44px;background:rgba(244,195,211,.8);transform:translateX(-50%) rotate(-4deg)}}
+.cw{{position:relative;display:inline-block}}.a.cw{{position:absolute}}
+.bk{{position:absolute;left:46px;display:flex;align-items:center;gap:22px}}
+.bk b{{font:400 60px/74px K;width:84px;height:84px;text-align:center;border:5px solid;border-radius:50%;transform:rotate(-6deg)}}
+.bk img{{height:230px;display:block;border:8px solid #fff;box-shadow:0 14px 26px -12px rgba(122,31,61,.5)}}
+.oval{{font:400 48px/1.1 H;color:{INK};border:4px dashed {ROSE};border-radius:50%;padding:26px 40px;transform:rotate(-3deg)}}
+.note{{position:absolute;background:#FFFDF9;box-shadow:0 18px 30px -16px rgba(122,31,61,.35);padding:40px 50px 34px 76px;text-align:left}}
+.note .clip{{position:absolute;top:-46px;left:18px}}
+.note p{{font:400 32px/1.45 I;color:{SOFT}}}.note .q{{font:400 50px/1.15 H;color:{INK};margin-top:16px}}
+.pin{{position:absolute;top:-16px;left:50%;width:34px;height:34px;margin-left:-17px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#E07A9E,#7A1F3D);box-shadow:0 6px 8px rgba(0,0,0,.25)}}
+.card{{height:{CARD_H}px;display:block;border:10px solid #fff;box-shadow:0 26px 44px -18px rgba(122,31,61,.45)}}
+.box{{height:500px;filter:drop-shadow(0 26px 34px rgba(122,31,61,.3))}}
+.small{{font:400 30px/1.45 I;color:{SOFT}}}"""
 
 n = {}
 for seed, (name, (q, cards, dest)) in enumerate(C.items()):
-    tot = 8
-    s1 = (f'<div class="s" style="justify-content:flex-start;padding-top:110px;gap:28px"><h1>{q}</h1>'
-          f'<p class="big">Выберите 1, 2 или 3<br>и идите по своей линии</p></div>')
-    backs = "".join(f'<div class="bk" style="top:{y}px"><b style="color:{COL[i]}">{i+1}</b><img src="back_sad.jpg"></div>' for i, y in enumerate(BACK_Y))
-    s2 = f'<div class="s" style="justify-content:flex-start;padding-top:110px"><p class="big">Не отрывайте глаз<br>от своей линии</p><div class="n">2/{tot}</div></div>'
-    s3 = f'<div class="s"><div class="n">3/{tot}</div></div>'
-    ends = "".join(f'<img class="end" src="k/{c[0]}.jpg" style="top:{y}px">' for c, y in zip(cards, CARD_Y))
-    pan = f'<div class="wrap">{s1}{s2}{s3}{lines(dest, seed+7)}{ends}{backs}</div>'
-    rest = [f'<img class="card" src="k/{c}.jpg"><h2>{t}</h2><p>{x.rsplit(". ", 1)[0]}.</p><p class="q">{x.rsplit(". ", 1)[1]}</p>' for c, t, x in cards]
-    rest.append('<h2>Какая карта<br>выпала вам?</h2><p class="big">Напишите в комментариях.<br><br>Отправьте подруге —<br>пусть выберет свою.</p>')
-    rest.append(PRODUCT)
-    body = pan + "".join(f'<div class="s">{h}<div class="logo">SHE</div><div class="n">{i+4}/{tot}</div></div>' for i, h in enumerate(rest))
-    open(name + ".html", "w").write(f'<html><head><meta charset="utf-8"><style>{css}</style></head><body>{body}</body></html>')
+    tot = 6
+    order = [cards[dest.index(k)] for k in range(3)]  # слайд 3 — карта линии, у которой dest=0, и т. д.
+    a = []
+    q1, q2, q3 = Q3[name]
+    a.append(f'<div class="a strips" style="left:70px;top:80px">{strip(q1,0,-2)}{strip(q2,1,1.5)}{strip(q3,2,-1.5)}</div>')
+    a.append('<div class="a oval" style="left:700px;top:390px;font-size:44px;text-align:center">выберите<br>1, 2 или 3</div>')
+    a.append(stk(HEART, 70, 960, 300, 12))
+    a += [f'<div class="bk" style="top:{y}px"><b style="color:{COL[i]};border-color:{COL[i]}">{i+1}</b><div class=cw><img src="back_sad.jpg"><i class=tape style="left:50%;top:-18px;width:110px;height:36px"></i></div></div>' for i, y in enumerate(BACK_Y)]
+    a.append('<div class="a" style="left:1330px;top:90px;width:500px;background:#F4C3D3;padding:48px 30px 40px;transform:rotate(-3deg);box-shadow:0 18px 26px -14px rgba(122,31,61,.4);text-align:center;font:400 62px/1.1 H;color:#7A1F3D"><i class=pin></i>Не отрывайте глаз от своей линии</div>')
+    a.append(stk(STAR, 60, 1960, 1180, 10)); a.append(stk(FLOWER, 90, 1150, 1180, 0))
+    for k, (c, t, x) in enumerate(order):
+        X = 2160 + k * 1080
+        body, qq = x.rsplit(". ", 1)
+        r = (-2, 2, -1.5)[k]
+        a.append(f'<div class="a cw" style="left:{X+540-CW//2}px;width:{CW}px;top:{CARD_TOP}px;transform:rotate({r}deg)"><img class=card src="k/{c}.jpg"><i class=tape style="left:50%;top:-22px"></i></div>')
+        a.append(f'<div class="a" style="left:{X}px;width:1080px;top:{CARD_TOP+CARD_H+40}px;text-align:center">{strip(t, k % 3, -r/2, 66)}</div>')
+        a.append(f'<div class="note" style="left:{X+110}px;width:860px;top:{CARD_TOP+CARD_H+160}px;transform:rotate({r/3}deg)">{CLIP}<p>{body}.</p><p class=q>{qq}</p></div>')
+        a.append(stk([HEART, FLOWER, STAR][k], 64, X + 930, 160, 10))
+    a += [f'<div class=logo style="left:{k*1080}px">SHE</div>' for k in range(5)]
+    a += [f'<div class=n style="left:{k*1080+980}px">{k+1}/{tot}</div>' for k in range(1, 5)]
+    pan = f'<div class="wrap">{lines(dest, seed+7)}{"".join(a)}</div>'
+    last = f'<div class="s">{PRODUCT}<div class="logo">SHE</div><div class="n" style="right:64px">6/{tot}</div></div>'
+    open(name + ".html", "w").write(f'<html><head><meta charset="utf-8"><style>{css}</style></head><body>{pan}{last}</body></html>')
     n[name] = tot
 json.dump(n, open("n.json", "w"))

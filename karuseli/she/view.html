@@ -32,13 +32,13 @@ const C=[["1_izmenit","Что резко изменит вашу жизнь?"],[
 const M=document.querySelector("main");
 C.forEach(([k,t])=>{
  const p=document.createElement("article");p.className="post";
- let imgs="";for(let i=1;i<=8;i++)imgs+=`<img src="${k}_0${i}.jpg" alt="${t}, слайд ${i}" loading="lazy">`;
- p.innerHTML=`<div class="head"><span class="av">SHE</span>lilarisyet<span class="cnt">1/8</span></div>
+ let imgs="";for(let i=1;i<=6;i++)imgs+=`<img src="${k}_0${i}.jpg" alt="${t}, слайд ${i}" loading="lazy">`;
+ p.innerHTML=`<div class="head"><span class="av">SHE</span>lilarisyet<span class="cnt">1/6</span></div>
  <div class="wrap"><div class="track">${imgs}</div><button class="nav prev" aria-label="Назад" disabled>‹</button><button class="nav next" aria-label="Дальше">›</button></div>
- <div class="dots">${"<i></i>".repeat(8)}</div><div class="q"><b>lilarisyet</b> ${t} Выберите 1, 2 или 3 и листайте.</div>`;
+ <div class="dots">${"<i></i>".repeat(6)}</div><div class="q"><b>lilarisyet</b> ${t} Выберите 1, 2 или 3 и листайте.</div>`;
  M.appendChild(p);
  const tr=p.querySelector(".track"),d=[...p.querySelectorAll(".dots i")],c=p.querySelector(".cnt"),pv=p.querySelector(".prev"),nx=p.querySelector(".next");
- const upd=()=>{const i=Math.round(tr.scrollLeft/tr.clientWidth);d.forEach((x,j)=>x.classList.toggle("on",j===i));c.textContent=(i+1)+"/8";pv.disabled=i===0;nx.disabled=i===7};
+ const upd=()=>{const i=Math.round(tr.scrollLeft/tr.clientWidth);d.forEach((x,j)=>x.classList.toggle("on",j===i));c.textContent=(i+1)+"/6";pv.disabled=i===0;nx.disabled=i===5};
  tr.addEventListener("scroll",upd,{passive:true});upd();
  pv.onclick=()=>tr.scrollBy({left:-tr.clientWidth,behavior:"smooth"});nx.onclick=()=>tr.scrollBy({left:tr.clientWidth,behavior:"smooth"});
 });
