@@ -1,0 +1,45 @@
+<title>Карусели SHE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kurale&family=Inter:wght@400;500&display=swap">
+<style>
+/* Лента как в Instagram: три карусели одна под другой, каждая листается вбок. Один светлый вид в цветах SHE. */
+:root{--bg:#F5EEF2;--card:#FFFFFF;--ink:#7A1F3D;--rose:#C2668A;--soft:#7A6E80;--dot:#DCC8D2;
+--display:"Kurale",Georgia,serif;--text:"Inter",system-ui,sans-serif;color-scheme:light}
+body{background:var(--bg);color:var(--soft);font-family:var(--text);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 48px}
+main{max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:40px}
+h1{font:400 30px/1.2 var(--display);color:var(--ink);text-align:center;margin:0;text-wrap:balance}
+.post{background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 10px 30px -18px rgba(122,31,61,.35)}
+.head{display:flex;align-items:center;gap:10px;padding:10px 12px;font:500 14px var(--text);color:var(--ink)}
+.av{width:30px;height:30px;border-radius:50%;background:var(--rose);color:#fff;display:grid;place-items:center;font:400 12px var(--display);letter-spacing:1px}
+.cnt{margin-left:auto;font:400 12px var(--text);color:var(--soft);background:var(--bg);padding:3px 9px;border-radius:20px;font-variant-numeric:tabular-nums}
+.wrap{position:relative}
+.track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.track::-webkit-scrollbar{display:none}
+.track img{flex:0 0 100%;width:100%;aspect-ratio:4/5;object-fit:cover;scroll-snap-align:center;display:block;max-width:100%}
+.nav{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.85);color:var(--ink);font-size:18px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.nav:focus-visible{outline:2px solid var(--ink)}
+.prev{left:8px}.next{right:8px}.nav[disabled]{opacity:0;pointer-events:none}
+.dots{display:flex;justify-content:center;gap:5px;padding:10px 0 14px}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--dot)}.dots i.on{background:var(--ink)}
+.q{padding:0 14px 14px;font-size:14px;line-height:1.45}.q b{color:var(--ink);font-weight:500}
+@media (prefers-reduced-motion:reduce){.track{scroll-behavior:auto}}
+</style>
+<main>
+<h1>«Тайный сад» — три карусели</h1>
+</main>
+<script>
+const C=[["1_izmenit","Что резко изменит вашу жизнь?"],["2_meshaet","Что мешает вам двигаться дальше?"],["3_nuzhno","Что вам сейчас нужнее всего?"]];
+const M=document.querySelector("main");
+C.forEach(([k,t])=>{
+ const p=document.createElement("article");p.className="post";
+ let imgs="";for(let i=1;i<=8;i++)imgs+=`<img src="${k}_0${i}.jpg" alt="${t}, слайд ${i}" loading="lazy">`;
+ p.innerHTML=`<div class="head"><span class="av">SHE</span>lilarisyet<span class="cnt">1/8</span></div>
+ <div class="wrap"><div class="track">${imgs}</div><button class="nav prev" aria-label="Назад" disabled>‹</button><button class="nav next" aria-label="Дальше">›</button></div>
+ <div class="dots">${"<i></i>".repeat(8)}</div><div class="q"><b>lilarisyet</b> ${t} Выберите 1, 2 или 3 и листайте.</div>`;
+ M.appendChild(p);
+ const tr=p.querySelector(".track"),d=[...p.querySelectorAll(".dots i")],c=p.querySelector(".cnt"),pv=p.querySelector(".prev"),nx=p.querySelector(".next");
+ const upd=()=>{const i=Math.round(tr.scrollLeft/tr.clientWidth);d.forEach((x,j)=>x.classList.toggle("on",j===i));c.textContent=(i+1)+"/8";pv.disabled=i===0;nx.disabled=i===7};
+ tr.addEventListener("scroll",upd,{passive:true});upd();
+ pv.onclick=()=>tr.scrollBy({left:-tr.clientWidth,behavior:"smooth"});nx.onclick=()=>tr.scrollBy({left:tr.clientWidth,behavior:"smooth"});
+});
+</script>
