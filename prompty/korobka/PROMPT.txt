@@ -1,11 +1,18 @@
-Create a photorealistic product photo of a gift box for an online shop, in the style of the attached reference photo (pink rigid gift box with the lid open, satin ribbon bow on the lid).
+PROMPT 1 — open box (attach: the box image you already got + product images 5, 6, 3, 4)
 
-The box: a rectangular rigid cardboard box, light pink outside (#F4C3D2), magnetic lid opened and standing upright behind it. Across the lid, a pink satin ribbon with a neat bow and a small gold bead in the center. A short pink ribbon pull tab sticks out at the front center. The inside walls and bottom are lined with paper printed with small stars: light pink background (#F9DDE6), stars in pink (#E79AB4), dark pink (#C2668A) and white. Camera looks at the box from above and slightly in front, about 45 degrees.
+Redo this gift box image with these changes:
 
-Inside the box, neatly and snugly arranged like a real gift set, lie the items from the attached images. Copy their design, text and artwork exactly — do not redraw or change them:
-1. The "Язык эмоций" card deck box (image 5) — lying flat, front side up, its thickness visible.
-2. The "Тайный сад" card deck box (image 6) — lying flat next to it.
-3. The "Мой идеальный планер 2027" planner cover (image 3) — a thick flat card, lying flat.
-4. The SHE journal (image 4) — a pink hardcover book lying flat, light page edges visible.
+1. Background: solid flat pure green (#00FF00), evenly lit, no gradient, no shadows on the background, no green reflections on the box. (We will cut it out.)
+2. Size in frame: the whole box, including the open lid, must be fully visible and smaller — it should take about 60% of the image, with plenty of empty green space around it on all sides. Same camera angle: from above and slightly in front, about 45 degrees.
+3. Real proportions of the items — they must NOT all be the same size:
+   - Planner "Мой идеальный планер 2027" (image 3): the largest item, a landscape (horizontal) rectangle about 21 × 15 cm, lying flat across the back of the box.
+   - SHE journal (image 4): a hardcover A5 book about 15 × 21 cm, about 2 cm thick, lying flat in the front right — clearly bigger than the card decks.
+   - Card deck boxes "Язык эмоций" (image 5) and "Тайный сад" (image 6): small, about 9 × 12 cm, about 3 cm thick, lying flat side by side in the front left.
+   Copy the artwork and lettering of all items exactly, do not redraw them.
+4. Make it a bit richer, still gentle and pink: tiny gold-foil stars printed on the lid, a glossy satin bow with a gold bead, a few small pink paper roses and a couple of pearls in the shredded paper, soft warm light with a subtle glow inside the box.
 
-A little pink shredded paper between the items. Soft warm daylight, soft shadows. Plain light background, no other objects, no people, no added text. Square image, box centered and filling most of the frame. Keep all lettering on the deck boxes, planner and journal exactly as in the images.
+Square image.
+
+PROMPT 2 — the same box closed (send right after you like the result of prompt 1)
+
+Now show exactly the same box, same size, same position and same camera angle, on the same pure green (#00FF00) background — but closed: the lid is shut, and a pink satin ribbon is tied around the closed box with the same bow and gold bead on top. Nothing else changes.
