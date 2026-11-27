@@ -51,8 +51,10 @@ def lines(dest, seed):
     last = tuple(2 - d for d in dest)  # на выходе из клубка линии лежат в том порядке, в каком идут к картам
     cols = []; prev = None
     # линии идут ровно до 2-го слайда и путаются дважды — около x=1280 и x=1550, вдали от краёв слайдов
-    mid = rnd.choice([q for q in perms if q != (0, 1, 2) and q != last])
-    cols = [(1150, (0, 1, 2)), (1400, mid), (1700, last)]
+    rev = lambda p, q: all(b == 2 - a for a, b in zip(p, q))  # все три меняются местами — сошлись бы в одной точке
+    adj = lambda q: sorted(abs(a - b) for a, b in zip(q, (0, 1, 2))) == [0, 1, 1]  # сначала меняются местами только две соседние линии
+    mid = rnd.choice([q for q in perms if adj(q) and q != last and not rev(q, last)])
+    cols = [(1130, (0, 1, 2)), (1380, mid), (1720, last)]
     out = ""
     for i in range(3):
         d = dest[i]; sy = BACK_Y[i] + 115
@@ -63,7 +65,7 @@ def lines(dest, seed):
         if d == 0: pts += [(1950, 1135 + rnd.randint(-20, 20)), (2200, 800), (2390, MID), (ex, MID)]
         else:
             top = 80 if d == 1 else 40
-            pts += [(1900, 540 - 120 * d), (2080 - 30 * d, top), (ex - 330, top), (ex - 140, MID - 80), (ex, MID)]  # подъём наверх — внутри 2-го слайда
+            pts += [(1930, LEVELS[2 - d] - 300), (2200 - 100 * d, top), (ex - 330, top), (ex - 140, MID - 80), (ex, MID)]  # подъём наверх — внутри 2-го слайда
         out += (f'<path d="{smooth(pts)}" stroke="{COL[i]}"/><circle cx="345" cy="{sy}" r="13" fill="{COL[i]}"/>'
                 f'<circle cx="{ex}" cy="{MID}" r="13" fill="{COL[i]}"/>')
     return (f'<svg class=lines viewBox="0 0 5400 1350" width=5400 height=1350><g fill=none '
@@ -118,10 +120,10 @@ for seed, (name, (q, cards, dest)) in enumerate(C.items()):
     a = []
     q1, q2, q3 = Q3[name]
     a.append(f'<div class="a ttl"><div class=t1>{q1}</div>{strip(q2,0,-1.5,96)}<div class=t3>{q3}</div></div>')
-    a.append('<div class="a oval" style="left:640px;top:440px;font-size:42px;text-align:center">выберите<br>1, 2 или 3</div>')
+    a.append('<div class="a oval" style="left:660px;top:405px;font-size:38px;padding:20px 34px;text-align:center">выберите<br>1, 2 или 3</div>')
     a.append(stk(HEART, 60, 960, 420, 12))
     a += [f'<div class="bk" style="top:{y}px"><b style="color:{COL[i]};border-color:{COL[i]}">{i+1}</b><img src="back_sad.jpg"></div>' for i, y in enumerate(BACK_Y)]
-    a.append('<div class="a" style="left:1330px;top:90px;width:500px;background:#F4C3D3;padding:48px 30px 40px;transform:rotate(-3deg);box-shadow:0 18px 26px -14px rgba(122,31,61,.4);text-align:center;font:400 62px/1.1 H;color:#7A1F3D"><i class=pin></i>Следите за своей линией и листайте →</div>')
+    a.append('<div class="a" style="left:1150px;top:90px;width:460px;background:#F4C3D3;padding:48px 30px 40px;transform:rotate(-3deg);box-shadow:0 18px 26px -14px rgba(122,31,61,.4);text-align:center;font:400 62px/1.1 H;color:#7A1F3D"><i class=pin></i>Следите за своей линией и листайте →</div>')
     a.append(stk(STAR, 60, 1960, 1180, 10)); a.append(stk(FLOWER, 90, 1150, 1180, 0))
     for k, (c, t, x) in enumerate(order):
         X = 2160 + k * 1080
