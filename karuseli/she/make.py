@@ -80,10 +80,14 @@ def strip(t, k, r, size=84):
     b, c = STRIP[k]
     return f'<span class=strip style="background:{b};color:{c};transform:rotate({r}deg);font-size:{size}px">{t}</span>'
 
-PRODUCT = (f'<div class=cw style="transform:rotate(-3deg)"><img class="box" src="box_sad.png"><i class=tape style="left:40%;top:-8px"></i></div>'
-           f'<div class=strips style="align-items:center">{strip("Напишите", 0, -2, 72)}{strip("«САД»", 1, 1.5, 80)}{strip("в комментариях —", 2, -1.5, 72)}</div>'
-           '<div class=oval>пришлю бесплатную карту дня</div>'
-           '<p class=small>«Тайный сад» — 40 карт, которые я нарисовала сама. 18+<br>Вся колода — $15, навсегда</p>')
+SPARK = '<svg viewBox="-50 -50 100 100" width={w}><path d="M0-48C4-12 12-4 48 0 12 4 4 12 0 48-4 12-12 4-48 0-12-4-4-12 0-48Z" fill="#E8B93A"/></svg>'
+def spark(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPARK.replace("{w}", str(w))}</div>'
+# реклама: сверху призыв, по центру сияющая коробка, снизу что будет; цены и «я нарисовала» нет — люди с карусели меня не знают (Лила 27.11)
+PRODUCT = (f'<div class=strips style="align-items:center">{strip("Напишите «САД»", 0, -1.5, 76)}{strip("в комментариях", 1, 1.5, 76)}</div>'
+           '<div class=glow><i></i><img class="box" src="box_sad.png">'
+           + spark(70, -40, 40) + spark(44, 470, 10) + spark(56, 500, 360) + spark(36, -10, 400) + '</div>'
+           '<div class=oval>и я пришлю вам ссылку на колоду</div>'
+           '<p class=small>Женские метафорические карты ручной работы</p>')
 
 GRID = "linear-gradient(#EFD3DE 2px,transparent 2px),linear-gradient(90deg,#EFD3DE 2px,transparent 2px)"
 css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-family:I;src:url(../inter-cyr.woff2)}}@font-face{{font-family:I;src:url(../inter.woff2);unicode-range:U+0000-00FF,U+2000-206F}}
@@ -111,6 +115,7 @@ css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-f
 .card{{height:{CARD_H}px;display:block;border:10px solid #fff;box-shadow:0 26px 44px -18px rgba(122,31,61,.45)}}
 .box{{height:500px;filter:drop-shadow(0 26px 34px rgba(122,31,61,.3))}}
 .ttl{{left:0;top:70px;width:1080px;text-align:center}}.t1{{font:400 80px/1.1 K;color:{INK};margin-bottom:10px}}.t3{{font:400 76px/1 H;color:{ROSE};margin-top:8px}}
+.glow{{position:relative;display:inline-block}}.glow i{{position:absolute;left:50%;top:50%;width:900px;height:900px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,240,190,.95) 0%,rgba(250,215,180,.6) 30%,rgba(244,195,211,.25) 50%,transparent 68%)}}.glow .box{{position:relative;height:470px;filter:drop-shadow(0 0 30px rgba(255,214,120,1)) drop-shadow(0 0 70px rgba(255,214,120,.8)) drop-shadow(0 24px 30px rgba(122,31,61,.25))}}
 .small{{font:400 30px/1.45 I;color:{SOFT}}}"""
 
 n = {}
