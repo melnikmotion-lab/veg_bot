@@ -89,14 +89,19 @@ def spark(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPARK.
 SPL = SPARK.replace("#E8B93A", "#EBCF7E")
 def spl(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPL.replace("{w}", str(w))}</div>'
 PRODUCT = ('<div class=a style="left:0;right:0;top:80px;text-align:center">' + strip("Напишите «САД» в комментариях", 0, -1, 58) + '</div>'
-           # рядом валяются карты: две открытые, две рубашкой вверх
-           + '<img class=a src=back_sad.jpg style="left:55px;top:260px;height:300px;border-radius:12px;transform:rotate(-14deg);box-shadow:0 14px 22px -10px rgba(122,31,61,.45)">'
-           + '<img class=a src=k/26.jpg style="left:85px;top:610px;height:300px;border-radius:12px;transform:rotate(9deg);box-shadow:0 14px 22px -10px rgba(122,31,61,.45)">'
-           + '<img class=a src=k/13.jpg style="left:800px;top:250px;height:300px;border-radius:12px;transform:rotate(12deg);box-shadow:0 14px 22px -10px rgba(122,31,61,.45)">'
-           + '<img class=a src=back_sad.jpg style="left:795px;top:600px;height:300px;border-radius:12px;transform:rotate(-7deg);box-shadow:0 14px 22px -10px rgba(122,31,61,.45)">'
-           + '<div class=a style="left:50%;top:220px;width:447px;height:620px;transform:translateX(-50%)">'
-           '<div style="position:absolute;left:9px;top:13px;width:447px;height:620px;border-radius:14px;background:linear-gradient(135deg,#B85A80,#7E2D4E);box-shadow:0 34px 50px -20px rgba(122,31,61,.55)"></div>'  # толщина коробки снизу и справа
-           '<img src=box_front.jpg style="position:absolute;left:0;top:0;width:447px;height:620px;border-radius:14px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)"></div>'
+           # справа из-за коробки веером выглядывают три открытые карты, слева лежат две рубашкой вверх
+           + '<img class=a src=k/38.jpg style="left:700px;top:300px;height:290px;border-radius:12px;transform-origin:50% 90%;transform:rotate(2deg);box-shadow:0 12px 20px -10px rgba(122,31,61,.45)">'
+           + '<img class=a src=k/26.jpg style="left:730px;top:300px;height:290px;border-radius:12px;transform-origin:50% 90%;transform:rotate(14deg);box-shadow:0 12px 20px -10px rgba(122,31,61,.45)">'
+           + '<img class=a src=k/13.jpg style="left:760px;top:300px;height:290px;border-radius:12px;transform-origin:50% 90%;transform:rotate(26deg);box-shadow:0 12px 20px -10px rgba(122,31,61,.45)">'
+           + '<img class=a src=back_sad.jpg style="left:40px;top:560px;height:290px;border-radius:12px;transform-origin:50% 90%;transform:rotate(-18deg);box-shadow:0 12px 20px -10px rgba(122,31,61,.45)">'
+           + '<img class=a src=back_sad.jpg style="left:95px;top:590px;height:290px;border-radius:12px;transform-origin:50% 90%;transform:rotate(-6deg);box-shadow:0 12px 20px -10px rgba(122,31,61,.45)">'
+           + '<div class=a style="left:50%;top:800px;width:493px;height:60px;margin-left:-226px;border-radius:50%;background:radial-gradient(ellipse,rgba(122,31,61,.35),transparent 70%);filter:blur(6px)"></div>'
+           + '<div class=a style="left:50%;top:230px;width:433px;height:600px;margin-left:-216px;perspective:1600px;z-index:2">'
+           '<div style="position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(14deg) rotateY(-16deg)">'  # коробка — настоящий объём: лицо, правый бок, нижний торец
+           '<img src=box_front.jpg style="position:absolute;left:0;top:0;width:433px;height:600px;transform:translateZ(65px)">'
+           '<img src=box_side.jpg style="position:absolute;left:151px;top:0;width:131px;height:600px;transform:rotateY(90deg) translateZ(216px);filter:brightness(.85)">'
+           '<img src=box_top.jpg style="position:absolute;left:0;top:234px;width:433px;height:131px;transform:rotateX(-90deg) translateZ(300px);filter:brightness(.75)">'
+           '</div></div>'
            + spl(54, 300, 200) + spl(40, 770, 870) + spl(34, 250, 900) +
            '<div class=a style="left:0;right:0;top:950px;text-align:center">' + strip("и я пришлю вам ссылку на колоду", 1, 1, 54) + '</div>'
            '<p class="a small" style="left:0;right:0;top:1080px;text-align:center">Женские метафорические карты ручной работы</p>')
