@@ -10,9 +10,9 @@ INK, ROSE, SOFT = "#7A1F3D", "#C2668A", "#7A6E80"
 # потом частая трактовка символа (дерево — сам человек и его род), потом вопрос себе. Стиль — Толстой, проще.
 C = {
  "1_izmenit": ("Что резко изменит<br>вашу жизнь?", [
-   ("13", "Смелое решение", "Это воинская карта, карта победы над страхом и нерешительностью. Карта действия и слов «Я иду вперёд». Пора отбросить сомнения. Какие сомнения вам предстоит отбросить на этой неделе?"),
+   ("13", "Смелое решение", "Это воинская карта, карта победы над страхом и нерешительностью. Карта действия и слов&nbsp;«Я&nbsp;иду вперёд». Пора отбросить сомнения и неподобающее вам малодушие. Какие сомнения вам предстоит отбросить на этой неделе?"),
    ("26", "Перестать притворяться", "Эта карта про лицемерие и усталость от сцены. Клоунесса танцует на шаре в узкой рамке, в сжатой, неестественной позе, и ей хлопают. Пора перестать притворяться, будто вы клоун в цирке, и занять своё естественное место. Перед кем вы притворяетесь?"),
-   ("03", "Возвращение к себе", "Эта карта про возвращение к своим корням. Мы перестаём думать, какими должны быть, чтобы угодить другим, и становимся собой, такими, какие мы есть от природы. Отсюда приходят исцеление и сила тела. Что возвращает вас к себе?")], (2, 0, 1)),
+   ("03", "Возвращение к себе", "Эта карта про возвращение к своим корням. Про телесность. Мы перестаём думать, какими должны быть, чтобы угодить другим, и становимся собой, такими, какие мы есть от природы. Отсюда приходят исцеление и сила для тела. Что возвращает вас к себе?")], (2, 0, 1)),
  "2_meshaet": ("Что мешает вам<br>двигаться дальше?", [
    ("34", "Страх", "Эта карта про страх. Красный дракон велик и страшен, а держат его тонкие синие нитки. Страх тоже кажется больше, чем он есть, пока к нему не подойдёшь. Чего вы боитесь сейчас?"),
    ("14", "Мысли по кругу", "Эта карта про мысли, которые ходят по кругу. Стебли оплели женщину в траве так, что её саму не видно. Так бывает, когда долго думаешь об одном. О чём вы думаете по кругу?"),
@@ -40,7 +40,7 @@ COL = ("#7A1F3D", "#C2668A", "#D9A21B")  # у каждой линии свой �
 STRIP = (("#F4C3D3", INK), (INK, "#FFF6EE"), ("#F3DFA6", INK))  # плашки: розовая, бордовая, золотая
 BACK_Y = (480, 750, 1020)  # рубашки на обложке сверху вниз, высота 230
 LEVELS = (595, 865, 1135)  # уровни линий = высота рубашек
-CARD_TOP, CARD_H = 120, 570   # карта на слайдах 3–5
+CARD_TOP, CARD_H = 100, 520   # карта на слайдах 3–5
 CW = round(CARD_H * 800 / 1118) + 20  # ширина карты с белой рамкой
 MID = CARD_TOP + CARD_H // 2  # здесь линия входит в карту
 END_X = 300                   # точка, где линия входит в карту (от левого края слайда)
@@ -83,11 +83,14 @@ def strip(t, k, r, size=84):
 SPARK = '<svg viewBox="-50 -50 100 100" width={w}><path d="M0-48C4-12 12-4 48 0 12 4 4 12 0 48-4 12-12 4-48 0-12-4-4-12 0-48Z" fill="#E8B93A"/></svg>'
 def spark(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPARK.replace("{w}", str(w))}</div>'
 # реклама: сверху призыв, по центру сияющая коробка, снизу что будет; цены и «я нарисовала» нет — люди с карусели меня не знают (Лила 27.11)
-PRODUCT = (f'<div class=strips style="align-items:center">{strip("Напишите «САД»", 0, -1.5, 76)}{strip("в комментариях", 1, 1.5, 76)}</div>'
-           '<div class=glow><i></i><img class="box" src="box_sad.png">'
-           + spark(70, -40, 40) + spark(44, 470, 10) + spark(56, 500, 360) + spark(36, -10, 400) + '</div>'
-           '<div class=oval>и я пришлю вам ссылку на колоду</div>'
-           '<p class=small>Женские метафорические карты ручной работы</p>')
+# реклама по образцу «конверт» (Pinterest, Лила 27.11): сверху призыв, из открытого конверта по центру сияет коробка,
+# на конверте — что будет дальше; цены и «я нарисовала» нет — люди с карусели меня не знают
+PRODUCT = (f'<div class="a strips" style="left:0;right:0;top:70px;align-items:center">{strip("Напишите «САД»", 0, -1.5, 76)}{strip("в комментариях", 1, 1.5, 76)}</div>'
+           '<div class="a env-flap"></div><div class="a env-back"></div>'
+           '<div class="a glow"><i></i></div><img class="a box" src="box_sad.png">'
+           '<div class="a env-front"><span>и я пришлю вам<br>ссылку на колоду</span></div>'
+           + stk(HEART, 60, 510, 850, -8) + spark(64, 170, 360) + spark(40, 860, 330) + spark(50, 880, 600) + spark(34, 150, 620) +
+           '<p class="a small" style="left:0;right:0;top:1140px;text-align:center">Женские метафорические карты ручной работы</p>')
 
 GRID = "linear-gradient(#EFD3DE 2px,transparent 2px),linear-gradient(90deg,#EFD3DE 2px,transparent 2px)"
 css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-family:I;src:url(../inter-cyr.woff2)}}@font-face{{font-family:I;src:url(../inter.woff2);unicode-range:U+0000-00FF,U+2000-206F}}
@@ -97,7 +100,7 @@ css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-f
 .wrap{{position:relative;width:5400px;height:1350px;font-family:I;color:{SOFT};overflow:hidden}}
 .s{{width:1080px;height:1350px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;padding:90px 90px 150px;text-align:center;position:relative;overflow:hidden;font-family:I;color:{SOFT}}}
 .lines{{position:absolute;inset:0}}.a{{position:absolute}}
-.logo{{position:absolute;bottom:44px;width:1080px;text-align:center;font:44px K;color:{ROSE};letter-spacing:4px}}.s .logo{{left:0}}
+.logo{{position:absolute;bottom:40px;width:1080px;height:76px;text-align:center}}.logo img{{height:76px}}.s .logo{{left:0}}
 .n{{position:absolute;bottom:52px;font:26px I;color:#B9AAB4}}
 .strips{{display:flex;flex-direction:column;align-items:flex-start;gap:14px}}
 .strip{{display:inline-block;font-family:K;line-height:1.15;padding:6px 34px 12px;box-shadow:0 6px 14px -8px rgba(122,31,61,.35)}}
@@ -108,14 +111,14 @@ css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-f
 .bk b{{font:400 60px/74px K;width:84px;height:84px;text-align:center;border:5px solid;border-radius:50%;transform:rotate(-6deg)}}
 .bk img{{height:230px;display:block;border-radius:12px;box-shadow:0 14px 26px -12px rgba(122,31,61,.5)}}
 .oval{{font:400 48px/1.1 H;color:{INK};border:4px dashed {ROSE};border-radius:50%;padding:26px 40px;transform:rotate(-3deg)}}
-.note{{position:absolute;background:#FFFDF9;box-shadow:0 18px 30px -16px rgba(122,31,61,.35);padding:40px 50px 34px 76px;text-align:left}}
+.note{{position:absolute;background:#FFFDF9;box-shadow:0 18px 30px -16px rgba(122,31,61,.35);padding:32px 46px 26px 72px;text-align:left}}
 .note .clip{{position:absolute;top:-46px;left:18px}}
-.note p{{font:400 32px/1.45 I;color:{SOFT}}}.note .q{{font:400 50px/1.15 H;color:{INK};margin-top:16px}}
+.note p{{font:400 30px/1.42 I;color:{SOFT}}}.note .q{{font:400 46px/1.12 H;color:{INK};margin-top:12px}}
 .pin{{position:absolute;top:-16px;left:50%;width:34px;height:34px;margin-left:-17px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#E07A9E,#7A1F3D);box-shadow:0 6px 8px rgba(0,0,0,.25)}}
 .card{{height:{CARD_H}px;display:block;border:10px solid #fff;box-shadow:0 26px 44px -18px rgba(122,31,61,.45)}}
 .box{{height:500px;filter:drop-shadow(0 26px 34px rgba(122,31,61,.3))}}
 .ttl{{left:0;top:70px;width:1080px;text-align:center}}.t1{{font:400 80px/1.1 K;color:{INK};margin-bottom:10px}}.t3{{font:400 76px/1 H;color:{ROSE};margin-top:8px}}
-.glow{{position:relative;display:inline-block}}.glow i{{position:absolute;left:50%;top:50%;width:900px;height:900px;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,240,190,.95) 0%,rgba(250,215,180,.6) 30%,rgba(244,195,211,.25) 50%,transparent 68%)}}.glow .box{{position:relative;height:470px;filter:drop-shadow(0 0 30px rgba(255,214,120,1)) drop-shadow(0 0 70px rgba(255,214,120,.8)) drop-shadow(0 24px 30px rgba(122,31,61,.25))}}
+.env-back{{left:150px;top:560px;width:780px;height:520px;background:#E7A3BA;border-radius:10px}}.env-flap{{left:150px;top:330px;width:780px;height:240px;background:#DE93AD;clip-path:polygon(0 100%,50% 0,100% 100%)}}.env-front{{left:150px;top:700px;width:780px;height:380px;background:#F4C3D3;border-radius:0 0 10px 10px;clip-path:polygon(0 0,50% 50%,100% 0,100% 100%,0 100%);box-shadow:0 20px 30px -18px rgba(122,31,61,.4)}}.env-front span{{position:absolute;left:0;right:0;bottom:46px;font:400 50px/1.1 H;color:{INK}}}.glow{{left:540px;top:600px;width:0;height:0}}.glow i{{position:absolute;width:880px;height:880px;left:-440px;top:-440px;background:radial-gradient(circle,rgba(255,240,190,1) 0%,rgba(255,222,160,.7) 25%,rgba(244,195,211,.25) 48%,transparent 66%)}}.s .box{{left:50%;top:360px;height:500px;transform:translateX(-50%);filter:drop-shadow(0 0 30px rgba(255,214,120,1)) drop-shadow(0 0 70px rgba(255,214,120,.8))}}
 .small{{font:400 30px/1.45 I;color:{SOFT}}}"""
 
 n = {}
@@ -136,12 +139,12 @@ for seed, (name, (q, cards, dest)) in enumerate(C.items()):
         r = (-2, 2, -1.5)[k]
         a.append(f'<div class="a cw" style="left:{X+540-CW//2}px;width:{CW}px;top:{CARD_TOP}px;transform:rotate({r}deg)"><img class=card src="k/{c}.jpg"><i class=tape style="left:50%;top:-22px"></i></div>')
         a.append(f'<div class="a" style="left:{X}px;width:1080px;top:{CARD_TOP+CARD_H+40}px;text-align:center">{strip(t, k % 3, -r/2, 66)}</div>')
-        a.append(f'<div class="note" style="left:{X+110}px;width:860px;top:{CARD_TOP+CARD_H+160}px;transform:rotate({r/3}deg)">{CLIP}<p>{body}.</p><p class=q>{qq}</p></div>')
+        a.append(f'<div class="note" style="left:{X+110}px;width:860px;top:{CARD_TOP+CARD_H+150}px;transform:rotate({r/3}deg)">{CLIP}<p>{body}.</p><p class=q>{qq}</p></div>')
         a.append(stk([HEART, FLOWER, STAR][k], 64, X + 930, 160, 10))
-    a += [f'<div class=logo style="left:{k*1080}px">SHE</div>' for k in range(5)]
+    a += [f'<div class=logo style="left:{k*1080}px"><img src=she_logo.png></div>' for k in range(5)]
     a += [f'<div class=n style="left:{k*1080+980}px">{k+1}/{tot}</div>' for k in range(1, 5)]
     pan = f'<div class="wrap">{lines(dest, seed+7)}{"".join(a)}</div>'
-    last = f'<div class="s">{PRODUCT}<div class="logo">SHE</div><div class="n" style="right:64px">6/{tot}</div></div>'
+    last = f'<div class="s">{PRODUCT}<div class="logo"><img src=she_logo.png></div><div class="n" style="right:64px">6/{tot}</div></div>'
     open(name + ".html", "w").write(f'<html><head><meta charset="utf-8"><style>{css}</style></head><body>{pan}{last}</body></html>')
     n[name] = tot
 json.dump(n, open("n.json", "w"))
