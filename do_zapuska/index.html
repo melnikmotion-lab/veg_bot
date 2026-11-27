@@ -1,0 +1,102 @@
+<title>До запуска SHE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kurale&family=Lora:wght@400;600&display=swap">
+<style>
+/* одна колонка-листок: розовые плашки разделов, крупные квадратики, нажимается вся строка */
+:root{--bg:#FCEFF3;--paper:#FFFFFF;--ink:#2B1B20;--muted:#7A6268;--wine:#7A2342;--pink:#E8A0B4;--done:#2F6B3A;--doneBg:#E6F2E4;
+--display:"Kurale",Georgia,serif;--body:"Lora",Georgia,serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1E1418;--paper:#2A1D22;--ink:#F3E6EA;--muted:#B9A2A9;--wine:#F0A8BE;--pink:#8E3F58;--done:#8FD19B;--doneBg:#22352A;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1E1418;--paper:#2A1D22;--ink:#F3E6EA;--muted:#B9A2A9;--wine:#F0A8BE;--pink:#8E3F58;--done:#8FD19B;--doneBg:#22352A;color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 40px}
+.sheet{max-width:640px;margin:0 auto;background:var(--paper);border-radius:20px;padding:28px 20px 24px}
+h1{font-family:var(--display);color:var(--wine);font-weight:400;font-size:2rem;margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--muted);font-size:.9rem;margin:0 0 6px}
+.count{color:var(--wine);font-weight:600;font-size:.95rem;margin:0 0 18px}
+section{display:flex;flex-direction:column;gap:6px;margin-top:22px}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;background:var(--pink);color:#fff;border-radius:10px;padding:7px 12px}
+.head b{font-family:var(--display);font-weight:400;font-size:1.15rem}
+.head span{font-size:.8rem;opacity:.95}
+label{display:flex;gap:14px;align-items:flex-start;padding:10px 8px;border-radius:12px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+label:hover{background:var(--bg)}
+input{appearance:none;-webkit-appearance:none;flex:none;width:28px;height:28px;margin:0;border:2px solid var(--wine);border-radius:7px;background:var(--paper);display:grid;place-content:center;cursor:pointer}
+input:checked{background:var(--wine)}
+input:checked::after{content:"";width:8px;height:14px;border:solid var(--paper);border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg)}
+input:focus-visible{outline:3px solid var(--pink);outline-offset:2px}
+.t{min-width:0}
+.t p{margin:0;font-size:1.02rem;line-height:1.4}
+.t small{display:block;color:var(--muted);font-size:.85rem;line-height:1.35;margin-top:3px}
+label:has(input:checked) .t p{text-decoration:line-through;color:var(--muted)}
+.ready .head{background:var(--doneBg);color:var(--done)}
+.ready li{list-style:none;padding:6px 8px;color:var(--done)}
+.ready ul{margin:0;padding:0}
+.ready li::before{content:"✓  "}
+.note{color:var(--muted);font-size:.8rem;margin-top:22px}
+</style>
+
+<div class="sheet">
+  <h1>Что осталось до запуска</h1>
+  <p class="sub">SHE · 27 ноября 2026 · нажмите на пункт, и появится галочка. Галочки сохраняются.</p>
+  <p class="count" id="count"></p>
+  <div id="list"></div>
+  <section class="ready">
+    <div class="head"><b>Уже готово</b></div>
+    <ul>
+      <li>Цены во всех продуктах (27.11)</li>
+      <li>Подарки с бантом и коробка «Всё вместе»</li>
+      <li>Оплата через заказ, выдача один раз (24.11)</li>
+      <li>Карусели «Тайный сад», 3 штуки по 6 слайдов</li>
+    </ul>
+  </section>
+  <p class="note" id="note"></p>
+</div>
+
+<script>
+const SECTIONS=[
+ ["От вас","это можете сделать только вы",[
+  ["sad5","Дорисовать пять карт «Тайного сада»: 02, 05, 06, 12, 23.","Сейчас они скрыты, в боте 35 карт, а на витрине написано 40. Как пришлёте, открою их."],
+  ["karta05","Прислать готовую карту 05.","Она нужна и для каруселей «Тайный сад»."],
+  ["sad_otvet","Настроить автоответ на слово «САД» в Instagram.","Последний слайд карусели просит написать «САД», и человек ждёт ссылку на колоду."],
+  ["open","Включить кнопку «Open» в @BotFather и прислать снимок с телефона.","Ссылка: she-bot-production.up.railway.app/app?go=all, режим Fullsize."],
+  ["token","Заменить ключ (токен) бота личного пространства.","Вы присылали его в чат 24.11. В @BotFather нажать Revoke, новый ключ я впишу на сервер."],
+  ["privychki","Одобрить примеры привычек в планере.","Сейчас стоят: «Стакан воды утром», «Прогулка», «Зарядка», «Без телефона перед сном»."],
+  ["golos","Записать голос для ролика «к врачу».","Сценарий: вариант про спешку."],
+  ["veg","Назвать день, когда гайд без мяса в VecBot подорожает с $7 до $19.",""]]],
+ ["Проверить вместе","со второго телефона, например мужа",[
+  ["pokupka","Покупка целиком: выбрать продукт → оплатить → скриншот → вы подтверждаете → «Готово!» → личное пространство.","Команды для проверки: /buyers и /reset."],
+  ["podarok","Подарок: колода, планер, дневник и «Всё вместе».","Пересланное сообщение, экран «Вам подарок», бант, коробка «Всё вместе»."],
+  ["temy","Темы в чате бота («SHE» и «Мои продукты»).",""],
+  ["telefon","Колоды на телефоне: открываются без глюков, коробки 3D видны с первого раза.",""]]],
+ ["После запуска","можно не ждать",[
+  ["resurs","20 ресурсных карт за 200 карточек дня.","Карты вы нарисуете через 2–3 месяца, выдачу в боте я сделаю к этому времени."],
+  ["kartochki","Отложенные карточки дня: 233, 238, 333, 336, 337, 339.",""]]]];
+
+const state={};let db=null;
+const list=document.getElementById('list');
+function el(tag,cls,text){const e=document.createElement(tag);if(cls)e.className=cls;if(text)e.textContent=text;return e}
+for(const [title,sub,items] of SECTIONS){
+  const s=el('section');const h=el('div','head');h.append(el('b','',title),el('span','',sub));s.append(h);
+  for(const [id,text,extra] of items){
+    const l=el('label');const c=el('input');c.type='checkbox';c.id='c_'+id;
+    c.addEventListener('change',()=>save(id,c.checked));
+    const t=el('div','t');t.append(el('p','',text));if(extra)t.append(el('small','',extra));
+    l.append(c,t);s.append(l);
+  }
+  list.append(s);
+}
+const ALL=SECTIONS.flatMap(s=>s[2].map(i=>i[0]));
+function render(){let n=0;for(const id of ALL){const c=document.getElementById('c_'+id);c.checked=!!state[id];if(state[id])n++}
+  document.getElementById('count').textContent='Сделано '+n+' из '+ALL.length}
+function local(){try{return JSON.parse(localStorage.getItem('she_do')||'{}')}catch(e){return {}}}
+function keepLocal(){try{localStorage.setItem('she_do',JSON.stringify(state))}catch(e){}}
+async function save(id,v){state[id]=v;render();keepLocal();
+  if(db){try{await db.doc('checks/'+id).set({done:v})}catch(e){document.getElementById('note').textContent='Галочка сохранилась только на этом телефоне.'}}}
+Object.assign(state,local());render();
+(async()=>{
+  try{db=await window.claude?.use?.('db')}catch(e){db=null}
+  if(!db)return;
+  db.collection('checks').onSnapshot(snap=>{
+    for(const d of snap.docs){const v=d.data();if(v&&typeof v.done==='boolean')state[d.id]=v.done}
+    render();keepLocal();
+  },()=>{});
+})();
+</script>
