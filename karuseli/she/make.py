@@ -88,12 +88,15 @@ def spark(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPARK.
 # «пришлю ссылку» — отдельной заметной строкой; жёлтые только звёздочки
 SPL = SPARK.replace("#E8B93A", "#EBCF7E")
 def spl(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPL.replace("{w}", str(w))}</div>'
-# фото колоды из Flow на весь слайд, надписи прямо на фото (Лила 27.11)
+# фото колоды из Flow на весь слайд (Лила 27.11): сверху белая записка на скотче (вариант 2), снизу светлая карточка (вариант 1)
 PRODUCT = ('<img class=a src=foto_koloda_1.jpg style="left:0;top:0;width:1080px;height:1350px;object-fit:cover">'
-           '<div class=a style="left:0;right:0;bottom:0;height:260px;background:linear-gradient(rgba(236,226,206,0),rgba(236,226,206,.92) 45%,#ECE2CE)"></div>'  # светлая дымка внизу, чтобы надпись и SHE не лежали на картах
-           '<div class=a style="left:0;right:0;top:90px;text-align:center">' + strip("Напишите «САД» в комментариях", 0, -1, 58) + '</div>'
-           '<div class=a style="left:0;right:0;top:1052px;text-align:center">' + strip("и я пришлю вам ссылку на колоду", 1, 1, 54) + '</div>'
-           '<p class="a small" style="left:0;right:0;top:1168px;text-align:center;color:#7A1F3D">Женские метафорические карты ручной работы</p>')
+  '<div class=a style="left:50%;top:60px;margin-left:-330px;width:660px;background:#FFFDF9;padding:34px 20px 30px;transform:rotate(-2deg);text-align:center;box-shadow:0 20px 30px -16px rgba(0,0,0,.35)">'
+  '<i class=tape style="left:50%;top:-20px"></i><div style="font:400 76px/1 H;color:#7A1F3D">Напишите «САД»</div>'
+  '<div style="font:400 34px/1.3 I;color:#7A6E80;margin-top:6px">в комментариях</div></div>'
+  '<div class=a style="left:120px;right:120px;top:1060px;background:#FFF9F1;border-radius:28px;padding:30px 20px 26px;text-align:center;box-shadow:0 24px 40px -18px rgba(122,31,61,.45)">'
+  '<div style="font:400 50px/1.15 H;color:#7A1F3D">и я пришлю вам ссылку на колоду</div>'
+  '<div style="font:400 26px/1.4 I;color:#7A6E80;margin-top:8px">Женские метафорические карты ручной работы</div></div>')
+LOGO6 = '<div class="logo" style="left:0;bottom:22px"><img src=she_logo.png style="height:60px"></div>'
 
 GRID = "linear-gradient(#EFD3DE 2px,transparent 2px),linear-gradient(90deg,#EFD3DE 2px,transparent 2px)"
 css = f"""@font-face{{font-family:K;src:url(../kurale.woff2)}}@font-face{{font-family:I;src:url(../inter-cyr.woff2)}}@font-face{{font-family:I;src:url(../inter.woff2);unicode-range:U+0000-00FF,U+2000-206F}}
@@ -148,7 +151,7 @@ for seed, (name, (q, cards, dest)) in enumerate(C.items()):
     a += [f'<div class=logo style="left:{k*1080}px"><img src=she_logo.png></div>' for k in range(5)]
     a += [f'<div class=n style="left:{k*1080+980}px">{k+1}/{tot}</div>' for k in range(1, 5)]
     pan = f'<div class="wrap">{lines(dest, seed+7)}{"".join(a)}</div>'
-    last = f'<div class="s">{PRODUCT}<div class="logo"><img src=she_logo.png></div><div class="n" style="right:64px">6/{tot}</div></div>'
+    last = f'<div class="s">{PRODUCT}{LOGO6}<div class="n" style="right:64px">6/{tot}</div></div>'
     open(name + ".html", "w").write(f'<html><head><meta charset="utf-8"><style>{css}</style></head><body>{pan}{last}</body></html>')
     n[name] = tot
 json.dump(n, open("n.json", "w"))
