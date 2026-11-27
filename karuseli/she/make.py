@@ -89,8 +89,15 @@ def spark(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPARK.
 SPL = SPARK.replace("#E8B93A", "#EBCF7E")
 def spl(w, x, y): return f'<div class=stk style="left:{x}px;top:{y}px">{SPL.replace("{w}", str(w))}</div>'
 PRODUCT = ('<div class=a style="left:0;right:0;top:80px;text-align:center">' + strip("Напишите «САД» в комментариях", 0, -1, 58) + '</div>'
-           '<img class=a src=box_front.jpg style="left:50%;top:200px;height:690px;transform:translateX(-50%);border-radius:14px;box-shadow:0 34px 50px -22px rgba(122,31,61,.5),0 6px 14px rgba(122,31,61,.12)">'
-           + spl(64, 150, 260) + spl(40, 880, 230) + spl(52, 870, 760) + spl(34, 170, 820) +
+           # рядом валяются карты: две открытые, две рубашкой вверх
+           + '<img class=a src=back_sad.jpg style="left:55px;top:260px;height:300px;border-radius:12px;transform:rotate(-14deg);box-shadow:0 14px 22px -10px rgba(122,31,61,.45)">'
+           + '<img class=a src=k/26.jpg style="left:85px;top:610px;height:300px;border-radius:12px;transform:rotate(9deg);box-shadow:0 14px 22px -10px rgba(122,31,61,.45)">'
+           + '<img class=a src=k/13.jpg style="left:800px;top:250px;height:300px;border-radius:12px;transform:rotate(12deg);box-shadow:0 14px 22px -10px rgba(122,31,61,.45)">'
+           + '<img class=a src=back_sad.jpg style="left:795px;top:600px;height:300px;border-radius:12px;transform:rotate(-7deg);box-shadow:0 14px 22px -10px rgba(122,31,61,.45)">'
+           + '<div class=a style="left:50%;top:220px;width:447px;height:620px;transform:translateX(-50%)">'
+           '<div style="position:absolute;left:9px;top:13px;width:447px;height:620px;border-radius:14px;background:linear-gradient(135deg,#B85A80,#7E2D4E);box-shadow:0 34px 50px -20px rgba(122,31,61,.55)"></div>'  # толщина коробки снизу и справа
+           '<img src=box_front.jpg style="position:absolute;left:0;top:0;width:447px;height:620px;border-radius:14px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)"></div>'
+           + spl(54, 300, 200) + spl(40, 770, 870) + spl(34, 250, 900) +
            '<div class=a style="left:0;right:0;top:950px;text-align:center">' + strip("и я пришлю вам ссылку на колоду", 1, 1, 54) + '</div>'
            '<p class="a small" style="left:0;right:0;top:1080px;text-align:center">Женские метафорические карты ручной работы</p>')
 
