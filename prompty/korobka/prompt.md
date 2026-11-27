@@ -1,18 +1,14 @@
-# Промпт для ChatGPT: подарочный бокс «Всё вместе» (27.11, по образцам Лилы с Pinterest)
+# ChatGPT prompt (EN): SHE "All together" gift box — 27.11
+Attach: reference obrazcy/obrazec_6.webp (pink box with bow on the lid) + product images 5, 6 (3d), 3, 4.
 
-Приложить: картинки продуктов из этой папки (5 и 6 — коробки колод «3d», 3 — планер, 4 — дневник, по желанию 7–10 — рубашки и карты) и образцы боксов (скриншоты с Pinterest) — как образец стиля.
+Create a photorealistic product photo of a gift box for an online shop, in the style of the attached reference photo (pink rigid gift box with the lid open, satin ribbon bow on the lid).
 
----
+The box: a rectangular rigid cardboard box, light pink outside (#F4C3D2), magnetic lid opened and standing upright behind it. Across the lid, a pink satin ribbon with a neat bow and a small gold bead in the center. A short pink ribbon pull tab sticks out at the front center. The inside walls and bottom are lined with paper printed with small stars: light pink background (#F9DDE6), stars in pink (#E79AB4), dark pink (#C2668A) and white. Camera looks at the box from above and slightly in front, about 45 degrees.
 
-Сделай фотореалистичную картинку подарочного бокса для онлайн-магазина, в стиле приложенных образцов с Pinterest (розовый бокс с откинутой крышкой, атласная лента).
+Inside the box, neatly and snugly arranged like a real gift set, lie the items from the attached images. Copy their design, text and artwork exactly — do not redraw or change them:
+1. The "Язык эмоций" card deck box (image 5) — lying flat, front side up, its thickness visible.
+2. The "Тайный сад" card deck box (image 6) — lying flat next to it.
+3. The "Мой идеальный планер 2027" planner cover (image 3) — a thick flat card, lying flat.
+4. The SHE journal (image 4) — a pink hardcover book lying flat, light page edges visible.
 
-Бокс: прямоугольная жёсткая коробка из плотного картона, светло-розовая (#F4C3D2) снаружи, с откинутой назад крышкой на магните. На крышке поперёк — розовая атласная лента с аккуратным бантиком и маленькой золотой бусиной в центре. Спереди по центру из-под дна выходит короткий хвостик розовой ленты, за который открывают коробку. Внутренние стенки и дно оклеены бумагой с узором из маленьких звёздочек: фон светло-розовый (#F9DDE6), звёздочки розовые (#E79AB4), тёмно-розовые (#C2668A) и белые. Смотрим на бокс сверху и немного спереди, под углом примерно 45°.
-
-Внутри бокса плотно и аккуратно, как в настоящем подарочном наборе, уложены вещи с приложенных картинок. Их дизайн, надписи и рисунки повторить точно, ничего не перерисовывать:
-1. Коробочка колоды «Язык эмоций» (картинка 5) — лежит плашмя лицевой стороной вверх, видна толщина.
-2. Коробочка колоды «Тайный сад» (картинка 6) — лежит плашмя рядом.
-3. «Мой идеальный планер 2027» (картинка 3) — плотная карточка-обложка, лежит плашмя.
-4. Дневник SHE (картинка 4) — розовая книжка в твёрдой обложке, лежит плашмя, видны светлые страницы по краю.
-(По желанию: рядом с колодами веером несколько карт — картинки 9 и 10, рубашками вверх — 7 и 8.)
-
-Между вещами немного розовой бумажной стружки. Мягкий тёплый дневной свет, мягкие тени. Бокс стоит на светлом однотонном фоне, без лишних предметов, без людей, без текста. Квадратная картинка, бокс по центру, занимает почти весь кадр. Надписи на коробках колод, планере и дневнике оставь точно как на картинках.
+A little pink shredded paper between the items. Soft warm daylight, soft shadows. Plain light background, no other objects, no people, no added text. Square image, box centered and filling most of the frame. Keep all lettering on the deck boxes, planner and journal exactly as in the images.
